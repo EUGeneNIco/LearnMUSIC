@@ -1,0 +1,34 @@
+
+<div class="container">
+  <div class="cont">
+    <div class="heading mb-5">
+        <h1>Songsheet</h1>
+    </div>
+    <div class="content-details mb-3">
+        <form [formGroup]="addForm">
+            <div class="input-group input-text mb-3 col-3">
+              <span class="input-group-text label-span" id="basic-addon1">Singer</span>
+              <input class="form-control" formControlName="songTitle" type="text" placeholder="Default input" aria-label="default input example">
+            </div>
+            <div class="input-group input-text mb-3">
+              <span class="input-group-text label-span" id="basic-addon1">Title</span>
+              <input class="form-control" formControlName="singer" type="text" placeholder="Default input" aria-label="default input example">
+            </div>
+            <div class="input-group input-text mb-3">
+              <span class="input-group-text label-span" id="basic-addon1">Key</span>
+              <input class="form-control" formControlName="keySignature" type="text" placeholder="Default input" aria-label="default input example">
+            </div>
+            <div class="input-group input-text-area mb-3">
+              <textarea class="form-control" formControlName="contents" aria-label="With textarea"></textarea>
+            </div>
+            <div class="input-group">
+              <button *ngIf="editMode" pButton pRipple icon="pi pi-check" class="btn btn-primary button-left" type="submit" (click)="updateSheet()">Save</button>
+              <button *ngIf="!editMode" pButton pRipple icon="pi pi-times" class="btn btn-primary button-left" type="button" (click)="edit()" >Edit</button>
+              <button *ngIf="editMode" class="btn btn-danger button-left" type="button"(click)="cancelEdit()" >Cancel</button>
+              <button *ngIf="!editMode" class="btn btn-danger button-left" type="button" (click)="backToListPage()" >Back</button>
+              <button *ngIf="editMode" pButton pRipple icon="pi pi-trash" class="btn btn-danger button-left" type="button" (click)="deleteSongSheet()" >Delete</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

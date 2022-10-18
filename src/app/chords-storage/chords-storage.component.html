@@ -1,0 +1,39 @@
+<div class="list-left colored-cont">
+  <h1 class="heading">Songs</h1>
+  <div class="list-group w-auto universal-font" *ngFor="let sheet of sheets">
+    <div (click)="viewSongSheetDetails(sheet.id)" href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3 mb-1 colored-row" aria-current="true">
+      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">{{sheet.songTitle}}</h6>
+          <p class="mb-0 opacity-75">{{sheet.singer}}</p>
+        </div>
+        <small class="opacity-50 text-nowrap">now</small>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <button *ngIf="needMorePage" pButton pRipple icon="pi pi-check" class="btn button-colored" type="button" (click)="showNextPage()">Next Page...</button>
+  </div>
+  <div class="mt-2">
+    <button pButton pRipple icon="pi pi-check" class="btn button-colored" type="button" (click)="addSongSheet()">New Songsheet? Click Me</button>
+  </div>
+</div>
+
+<div class="main-content colored-cont-main">
+  <h1 class="heading">Watchlists</h1>
+  <div class="list-group w-auto universal-font">
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3 mb-1 colored-row-main"> 
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/6cuoH5M8U9Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
+      <a href="">Learn this song (chords and tabs)</a>
+      <a href="https://www.youtube.com/channel/UC5KnM1tJ8WrAtWQn6CuWsJg/featured">Visit channel</a>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3 mb-1 colored-row-main "> 
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/oXfNViGuojw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
+      <a href="">Learn this song (chords and tabs)</a>
+    </div>
+  </div>
+  
+</div>
