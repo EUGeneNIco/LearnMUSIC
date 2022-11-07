@@ -1,17 +1,15 @@
-.row-list{
-    margin-right: 50%;
+.container{
+    max-width: 2000px;
+    font-family: 'Varela Round', sans-serif;
 }
 
-.card-row {
+.cont{
     width: 100%;
-    display: flex;
-    margin-bottom: 0.2em;
+    align-items: center;
+    min-width: 300px;
 }
 
-.cards-grid {
-    width: 50%;
-    padding: 2em;
-}
+/* Songslist (left) */
 
 .list-left {
     padding: 1em;
@@ -20,16 +18,11 @@
     width: 25%;
 }
 
-.main-content {
-    padding: 1em;
-    float: right;
-    height: auto;
-    width: 74%;
-} 
-
-.main-content > .heading {
-    text-align: center;
-    color: black;
+.colored-cont{
+    background-color: #ff0000;
+    border-collapse: collapse;
+    padding: 2em;
+    border-radius: 1em;
 }
 
 .heading{
@@ -37,42 +30,82 @@
     color: whitesmoke;
 }
 
-.universal-font {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
 .colored-row{
-    background-color: #950740;
+    background-color: antiquewhite;
+    color: black(255, 255, 255);
+}
+
+.colored-row:hover{
+    background-color: rgb(255, 0, 0);
     color: whitesmoke;
-}
-
-.colored-row-main{
-    background-color: #8e8e91;
-    color: rgb(0, 0, 0);
-    width: 75%;
-}
-
-.colored-cont{
-    background-color: #1A1A1D;
-    border-collapse: collapse;
-    padding: 2em;
-    border-radius: 1em;
-}
-
-.colored-cont-main {
-    background-color: #c7c4c4;
-    border-collapse: collapse;
-    padding: 2em;
-    border-radius: 1em;
 }
 
 .button-colored{
-    background-color: #4E4E50;
+    background-color: antiquewhite;
+    color: black(255, 255, 255);
+}
+
+.button-colored:hover{
+    background-color: rgb(255, 0, 0);
     color: whitesmoke;
 }
 
-.main-content > .video-info{
-    background-color: #4E4E50;
-    color: whitesmoke;
+.footer >.left-button{
+    margin: 0.5em auto ;
+    float: left;
 }
+
+.footer >.center-button{
+    margin: 0.5em auto ;
+    display: inline-block;
+}
+
+.footer >.right-button{
+    margin: 0.5em auto ;
+    float: right;
+}
+
+/* ***************************************************** */
+
+/* WatchList */
+
+.main-content {
+    padding: 1em;
+    margin-left: 1em;
+    display: inline-block;
+    height: auto;
+    width: 73%; 
+} 
+
+
+.colored-cont-main {
+    background-color: #ff0000;
+    border-collapse: collapse;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.colored-row-main{
+    background-color: antiquewhite;
+    color: rgb(0, 0, 0);
+    width: 75%;
+    align-items: center;
+    justify-content: center;
+} 
+
+
+
+
+
+/* .universal-font {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+} */
+
+
+
+
+
+
+
+
 

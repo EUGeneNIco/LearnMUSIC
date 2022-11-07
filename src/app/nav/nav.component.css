@@ -1,3 +1,8 @@
+* {
+    font-size: 1rem !important;
+    font-family: 'Varela Round', sans-serif !important;
+}
+
 .navbar-theme {
     background-color: #4a4a4a;
 }

@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChordsStorageDetailComponent } from './chords-storage/chords-storage-detail.component';
 import { AddChordSheetComponent } from './add-chord-sheet/add-chord-sheet.component';
 import { HomeComponent } from './home/home.component';
-import { BlogsComponent } from './blogs/blogs.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { BlogsComponent } from './blogs/blogs.component';
     ChordsStorageDetailComponent,
     AddChordSheetComponent,
     HomeComponent,
-    BlogsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

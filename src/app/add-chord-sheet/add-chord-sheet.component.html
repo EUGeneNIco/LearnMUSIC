@@ -1,31 +1,33 @@
-
-<div class="container">
-    <div class="cont">
-      <div class="heading mb-3">
+<div class="container my-5">
+  <div class="cont">
+    <div class="content-details">
+      <div class="heading">
           <h1>Songsheet</h1>
       </div>
-      <div class="content-details mb-1">
-          <form [formGroup]="addForm">
-              <div class="input-group input-text mb-3 col-3">
-                <span class="input-group-text label-span" id="basic-addon1">Singer</span>
-                <input class="form-control" formControlName="songTitle" type="text" placeholder="Singer, Band, Recording artist..." aria-label="default input example">
-              </div>
-              <div class="input-group input-text mb-3">
-                <span class="input-group-text label-span" id="basic-addon1">Title</span>
-                <input class="form-control" formControlName="singer" type="text" placeholder="What's the title?" aria-label="default input example">
-              </div>
-              <div class="input-group input-text mb-3">
-                <span class="input-group-text label-span" id="basic-addon1">Key</span>
-                <input class="form-control" formControlName="keySignature" type="text" placeholder="C, C# ,Eb ..." aria-label="default input example">
-              </div>
-              <div class="input-group input-text-area mb-3">
-                <textarea class="form-control" formControlName="contents" aria-label="With textarea" placeholder="Write the lyrics with chords here..."></textarea>
-              </div>
-              <div class="input-group">
-                <button pButton pRipple icon="pi pi-check" class="btn btn-primary button-left" type="submit" (click)="addChordSheet()">Add</button>
-                <button pButton pRipple class="btn btn-danger button-left" type="button"(click)="cancel()" >Cancel</button>
-              </div>
-          </form>
-      </div>
+        <form [formGroup]="addForm">
+            <div class="input-group input-text mb-3 text-input" style="width:100%">
+              <span class="input-group-text label-span" id="basic-addon1">Singer</span>
+              <input class="form-control" formControlName="songTitle" type="text" placeholder="Default input" aria-label="default input example">
+            </div>
+            <div class="input-group input-text mb-3" style="width:100%">
+              <span class="input-group-text label-span" id="basic-addon1">Title</span>
+              <input class="form-control" formControlName="singer" type="text" placeholder="Default input" aria-label="default input example">
+            </div>
+            <div class="input-group input-text mb-3" style="width:100%">
+              <span class="input-group-text label-span" id="basic-addon1">Key</span>
+              <input class="form-control" formControlName="keySignature" type="text" placeholder="Default input" aria-label="default input example">
+            </div>
+            <div class="input-group input-text-area mb-3" style="width:100%">
+              <textarea class="form-control" formControlName="contents" aria-label="With textarea"></textarea>
+            </div>
+            <div class="input-group">
+              <button pButton pRipple icon="pi pi-check" class="btn button-colored button-left" type="submit" (click)="addChordSheet()">Add</button>
+              <button pButton pRipple class="btn button-colored  button-left" type="button"(click)="cancel()" >Cancel</button>
+            </div>
+        </form>
     </div>
   </div>
+</div>
+
+  
+  

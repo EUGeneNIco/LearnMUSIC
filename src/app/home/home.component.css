@@ -1,4 +1,9 @@
-btn-theme {
+*{
+    font-size: 1rem !important;
+    font-family: 'Varela Round', sans-serif !important;
+}
+
+/* btn-theme {
     color: whitesmoke;
     background-color: #3500D3;
 }
@@ -10,4 +15,4 @@ btn-theme {
 
 .higher {
     margin-bottom: 50px;
-}
+} */
