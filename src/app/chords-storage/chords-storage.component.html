@@ -28,14 +28,20 @@
               <p class="mb-0">{{sheet.singer}}</p>
               <p class="mb-0">by: {{sheet.songTitle}}</p>
             </div>
-            <small class="opacity-100 text-nowrap">now</small>
+            <small class="opacity-100 text-nowrap">
+              <i class="bx bxs-music"></i></small>
           </div>
         </div>
       </div>
       <div class="footer">
-        <button *ngIf="hasPrevPage"  pButton pRipple icon="pi pi-check" class="btn button-colored left-button" type="button" (click)="showPrevPage()"><span>Previous page</span></button>
-        <button *ngIf="needMorePage" pButton pRipple icon="pi pi-check" class="btn button-colored  right-button" type="button" (click)="showNextPage()"><span>Next page</span></button>
-        <button pButton pRipple icon="pi pi-check" class="btn button-colored left-button" type="button" (click)="addSongSheet()"><span>New Songsheet? Click Me</span></button>
+        <button *ngIf="hasPrevPage"  pButton pRipple icon="pi pi-check" id="left" 
+                class="btn button-colored paging-button" type="button" (click)="showPrevPage()"><span>
+                <i class='bx bxs-left-arrow' ></i>Previous page</span>
+        </button>
+        <button *ngIf="needMorePage" pButton pRipple icon="pi pi-check" id="right" 
+                class="btn button-colored  paging-button" type="button" (click)="showNextPage()">Next page<span>
+                <i class='bx bxs-right-arrow' ></i></span></button>
+        <button pButton pRipple icon="pi pi-check" class="btn button-colored" type="button" (click)="addSongSheet()"><span>New Songsheet? Click Me</span></button>
       </div>
     </div>
     

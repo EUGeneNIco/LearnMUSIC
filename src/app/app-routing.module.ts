@@ -8,13 +8,17 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: AppComponent
+  // },
+  // {
+  //   path: 'home',
+  //   component: HomeComponent
+  // },
   {
     path: '',
-    component: AppComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent
+    component: ChordsStorageComponent
   },
   {
     path: 'chords',

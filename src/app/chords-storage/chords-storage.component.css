@@ -40,30 +40,35 @@
     color: whitesmoke;
 }
 
-.button-colored{
-    background-color: antiquewhite;
-    color: black(255, 255, 255);
+.footer .button-colored{
+    /* background-color: antiquewhite;
+    color: black(255, 255, 255); */
+    cursor: pointer;
+    width: 100%;
+    height: 46px;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-top: 15px;
+    color: #fff;
+    background: linear-gradient(
+        0deg, #124ce7, #3784ff
+    );
 }
 
-.button-colored:hover{
-    background-color: rgb(255, 0, 0);
-    color: whitesmoke;
+.footer .paging-button{
+    display: block;
 }
 
-.footer >.left-button{
-    margin: 0.5em auto ;
+.footer #left{
     float: left;
+    width: 45%;
 }
 
-.footer >.center-button{
-    margin: 0.5em auto ;
-    display: inline-block;
-}
-
-.footer >.right-button{
-    margin: 0.5em auto ;
+.footer #right{
     float: right;
+    width: 45%;
 }
+
 
 /* ***************************************************** */
 
