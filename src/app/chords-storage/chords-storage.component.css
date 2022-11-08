@@ -1,6 +1,15 @@
+*{
+    /* margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box; */
+    font-family: 'Varela Round', sans-serif;
+}
+
 .container{
     max-width: 2000px;
-    font-family: 'Varela Round', sans-serif;
+    /* font-family: 'Varela Round', sans-serif; */
 }
 
 .cont{
@@ -57,6 +66,7 @@
 
 .footer .paging-button{
     display: block;
+    padding: 0.5rem;
 }
 
 .footer #left{
@@ -64,9 +74,17 @@
     width: 45%;
 }
 
+.footer #left i {
+    margin-right: 1rem;
+}
+
 .footer #right{
     float: right;
     width: 45%;
+}
+
+.footer #right i {
+    margin-left: 1rem;
 }
 
 
