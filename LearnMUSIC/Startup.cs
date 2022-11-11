@@ -10,16 +10,49 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using GYMAPI.Interface.HostedService;
 using LearnMUSIC.Common;
+using LearnMUSIC.Auth;
+using AFPMBAI.CLAIMS.WebAPI.Auth;
+using LearnMUSIC.Interface.WebAPI.Auth;
+using LearnMUSIC.Infrastructure;
 
 namespace LearnMUSIC
 {
   public class Startup
   {
-    public IConfiguration Configuration { get; }
-
     public Startup(IConfiguration configuration)
     {
-        Configuration = configuration;
+      Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+      services.AddControllers();
+      services.AddCors();
+
+      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+        options => Configuration.Bind("JwtSettings", options))
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+        options => Configuration.Bind("CookieSettings", options));
+
+      services.AddEndpointsApiExplorer();
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
+      });
+      services.AddDbContext<AppDbContext>(options =>
+          options.UseSqlServer(Configuration.GetConnectionString("LearnMUSICDbConnectionString"))
+                  .UseLazyLoadingProxies());
+
+     
+
+      //services.AddHostedService<MembershipStatusUpdateService>();
+
+      // Configure DI
+      this.ConfigureDI(services);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +71,8 @@ namespace LearnMUSIC
 
       app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
+      //app.UseAuthentication();
+
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
@@ -46,47 +81,11 @@ namespace LearnMUSIC
       });
     }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
-    public void ConfigureServices(IServiceCollection services)
+    private void ConfigureDI(IServiceCollection services)
     {
-      services.AddControllers();
-
-      services.AddCors();
-
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-          .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-                options => Configuration.Bind("JwtSettings", options))
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-                options => Configuration.Bind("CookieSettings", options));
-
-      services.AddEndpointsApiExplorer();
-
-      services.AddSwaggerGen(c =>
-      {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
-      });
-
-      services.AddDbContext<AppDbContext>(options =>
-          options.UseSqlServer(Configuration.GetConnectionString("LearnMUSICDbConnectionString"))
-                  .UseLazyLoadingProxies());
-
-      
-
-      //services.AddHostedService<MembershipStatusUpdateService>();
-
-      // Configure DI
-      this.ConfigureDI(services);
-    }
-
-
-        
-    public void ConfigureDI(IServiceCollection services)
-    {
-      // Add Framework Services
-      //services.AddTransient<IDateTime, MachineDateTime>();
-
       //DbContext
       //services.AddScoped(typeof(IAppDbContext), typeof(AppDbContext));
+      services.AddScoped(typeof(IAppDbContext), typeof(AppDbContext));
 
       services.AddMediatR(typeof(Startup).GetTypeInfo());
 
@@ -96,11 +95,8 @@ namespace LearnMUSIC
       // Fluent Validation
       services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-      //services.AddTransient(typeof(IAppDbContext), typeof(AppDbContext));
-
-      services.AddTransient<IAppDbContext, AppDbContext>();
-
+      // Add Framework Services
+      services.AddTransient<IDateTime, MachineDateTime>();
     }
-
   }
 }

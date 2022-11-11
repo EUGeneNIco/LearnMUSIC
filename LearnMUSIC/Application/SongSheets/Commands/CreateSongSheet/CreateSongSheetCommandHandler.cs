@@ -1,4 +1,5 @@
-﻿using LearnMUSIC.Common;
+using LearnMUSIC.Common;
+using LearnMUSIC.Core.Application._Interfaces;
 using LearnMUSIC.Entities;
 using LearnMUSIC.Interfaces;
 using MediatR;
