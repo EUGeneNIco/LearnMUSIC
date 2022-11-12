@@ -1,5 +1,5 @@
 using AutoMapper;
-using LearnMUSIC.Common;
+using LearnMUSIC.Common.Common;
 using LearnMUSIC.Core.Application._Exceptions;
 using LearnMUSIC.Core.Application._Interfaces;
 using MediatR;
@@ -32,7 +32,7 @@ namespace LearnMUSIC.Application.SongSheets.Commands.UpdateSongSheet
       entity.SongTitle = request.SongTitle;
       entity.Singer = request.Singer;
       entity.KeySignature = request.KeySignature;
-      entity.Contents = request.KeySignature;
+      entity.Contents = request.Contents;
 
       entity.ModifiedOn = modifiedOn;
 

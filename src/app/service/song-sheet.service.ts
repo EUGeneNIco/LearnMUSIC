@@ -28,7 +28,7 @@ export class SongSheetService {
   }
 
   delete(id: any){
-    return this.http.get(this.baseApiUrl + '/api/SongSheets/delete/' + id);
+    return this.http.post(this.baseApiUrl + '/api/SongSheets/delete/' + id, null);
   }
 
 

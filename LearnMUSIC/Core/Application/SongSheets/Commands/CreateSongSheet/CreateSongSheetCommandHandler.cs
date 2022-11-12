@@ -1,7 +1,6 @@
-using LearnMUSIC.Common;
+using LearnMUSIC.Common.Common;
 using LearnMUSIC.Core.Application._Interfaces;
-using LearnMUSIC.Entities;
-using LearnMUSIC.Interfaces;
+using LearnMUSIC.Core.Domain.Entities;
 using MediatR;
 
 namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet

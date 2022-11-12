@@ -1,5 +1,6 @@
 
-using LearnMUSIC.Entities;
+
+using LearnMUSIC.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

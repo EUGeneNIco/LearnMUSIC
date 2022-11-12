@@ -1,7 +1,6 @@
 using LearnMUSIC.Core.Application.Infrastructure;
 using LearnMUSIC.Core.Application._Infrastructure.AutoMapper;
 using LearnMUSIC.Core.Application._Interfaces;
-using LearnMUSIC.Data;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -9,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using GYMAPI.Interface.HostedService;
-using LearnMUSIC.Common;
-using LearnMUSIC.Auth;
 using AFPMBAI.CLAIMS.WebAPI.Auth;
 using LearnMUSIC.Interface.WebAPI.Auth;
 using LearnMUSIC.Infrastructure;
+using LearnMUSIC.Infrastructure.Persistence;
+using LearnMUSIC.Common.Common;
 
 namespace LearnMUSIC
 {

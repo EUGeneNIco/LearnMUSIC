@@ -1,5 +1,4 @@
 using LearnMUSIC.Application.SongSheets.Models;
-using LearnMUSIC.Entities;
 using MediatR;
 
 namespace LearnMUSIC.Application.SongSheets.Queries.GetSongSheetById

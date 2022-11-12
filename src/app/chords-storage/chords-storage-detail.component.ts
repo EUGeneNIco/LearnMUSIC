@@ -101,7 +101,7 @@ export class ChordsStorageDetailComponent implements OnInit {
 
   updateSheet(){
     var record = this.addForm.getRawValue();
-
+    console.log(record);
     this.songSheetService.updateSheet({
       songTitle: record.songTitle,
       singer: record.singer,
@@ -110,7 +110,7 @@ export class ChordsStorageDetailComponent implements OnInit {
       id: this.songSheetId,
     }).subscribe({
       next:(data: any) => {
-        console.log(data);
+        // console.log(data);
         this.backToListPage();
       },
       error:(e) => {

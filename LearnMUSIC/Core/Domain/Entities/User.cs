@@ -1,4 +1,4 @@
-﻿namespace LearnMUSIC.Entities
+namespace LearnMUSIC.Core.Domain.Entities
 {
     public class User
     {

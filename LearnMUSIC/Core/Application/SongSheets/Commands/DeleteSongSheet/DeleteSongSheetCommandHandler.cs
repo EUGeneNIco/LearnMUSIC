@@ -1,4 +1,4 @@
-using LearnMUSIC.Common;
+using LearnMUSIC.Common.Common;
 using LearnMUSIC.Core.Application._Exceptions;
 using LearnMUSIC.Core.Application._Interfaces;
 using MediatR;

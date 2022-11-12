@@ -1,11 +1,13 @@
 using AutoMapper;
-using LearnMUSIC.Entities;
-using LearnMUSIC.Interfaces.Mapping;
+using LearnMUSIC.Core.Application._Interfaces.Mapping;
+using LearnMUSIC.Core.Domain.Entities;
 
 namespace LearnMUSIC.Application.SongSheets.Models
 {
   public class SongSheetDto : IHaveCustomMapping
   {
+    public long Id { get; set; }
+
     public string SongTitle { get; set; }
 
     public string Singer { get; set; }

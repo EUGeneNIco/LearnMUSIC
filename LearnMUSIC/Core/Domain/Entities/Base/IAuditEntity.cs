@@ -1,4 +1,4 @@
-﻿namespace LearnMUSIC.Entities.Base
+namespace LearnMUSIC.Core.Domain.Entities.Base
 {
     public interface IAuditEntity
     {

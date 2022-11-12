@@ -1,10 +1,9 @@
-
-using LearnMUSIC.Common;
+using LearnMUSIC.Common.Common;
 using System;
 
 namespace LearnMUSIC.Infrastructure
 {
-    public class MachineDateTime : IDateTime
+  public class MachineDateTime : IDateTime
     {
         public int CurrentYear => DateTime.Now.Year;
 

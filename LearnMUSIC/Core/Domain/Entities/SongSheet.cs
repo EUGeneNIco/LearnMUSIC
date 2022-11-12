@@ -1,6 +1,6 @@
-﻿using LearnMUSIC.Entities.Base;
+using LearnMUSIC.Core.Domain.Entities.Base;
 
-namespace LearnMUSIC.Entities
+namespace LearnMUSIC.Core.Domain.Entities
 {
     public class SongSheet : EntityBase
     {

@@ -177,6 +177,7 @@ export class ChordsStorageComponent implements OnInit {
   }
 
   viewSongSheetDetails(sheetId: any){
+    console.log(sheetId);
     console.log("View card details... " + sheetId);
     this.router.navigateByUrl('chords/edit/' + sheetId);
     // this.getCardDetail(cardId);
