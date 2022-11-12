@@ -15,18 +15,18 @@ namespace LearnMUSIC.Data
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-          base.OnConfiguring(optionsBuilder);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //  base.OnConfiguring(optionsBuilder);
+        //}
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-          base.OnModelCreating(modelBuilder);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //  base.OnModelCreating(modelBuilder);
 
-          //modelBuilder.RemovePluralizingTableNameConvention();
+        //  //modelBuilder.RemovePluralizingTableNameConvention();
 
-          modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        }
+        //  modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        //}
   }
 }

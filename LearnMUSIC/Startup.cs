@@ -47,8 +47,6 @@ namespace LearnMUSIC
           options.UseSqlServer(Configuration.GetConnectionString("LearnMUSICDbConnectionString"))
                   .UseLazyLoadingProxies());
 
-     
-
       //services.AddHostedService<MembershipStatusUpdateService>();
 
       // Configure DI

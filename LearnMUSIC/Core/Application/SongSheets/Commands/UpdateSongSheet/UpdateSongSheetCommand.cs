@@ -1,8 +1,8 @@
-﻿using MediatR;
+using MediatR;
 
 namespace LearnMUSIC.Application.SongSheets.Commands.UpdateSongSheet
 {
-    public class UpdateSongSheetCommand
+    public class UpdateSongSheetCommand : IRequest<long>
     {
         public long Id { get; set; }
 
