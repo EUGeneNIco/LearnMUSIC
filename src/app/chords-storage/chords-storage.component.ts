@@ -21,9 +21,13 @@ export class ChordsStorageComponent implements OnInit {
   editMode: boolean = false;
   viewMode: boolean = false;
   id: number = 0;
-  lastRowNo: number = 0;
-  sheetsLeft: number = 0;
   videos: any[] = [];
+
+  //Pagin
+  pageLimit: any = 6;
+  lastSheetNo: any = 0;
+  sheetsLeft: any = 0;
+  lastLastSheetNo: any = 0;
 
   constructor(
     private songSheetService: SongSheetService, 
@@ -48,10 +52,12 @@ export class ChordsStorageComponent implements OnInit {
         if(data.length > 7){
           this.needMorePage = true;
           this.allSheets = data;
+          
           // console.log("Need more page?? " + this.needMorePage);
           // console.log("New sheets: " +  this.sheets.length);
-          console.log("All sheets: " + this.allSheets.length);
-          this.showNextPage();
+          // console.log("All sheets: " + this.allSheets.length);
+          // this.showNextPage();
+          this.showFirstPage();
         }
         else{
           this.sheets = data;
@@ -63,117 +69,91 @@ export class ChordsStorageComponent implements OnInit {
     })
   }
 
+  showFirstPage(){
+    for(let index = 0; index < 6; index++){
+      this.sheets.push(this.allSheets[index]);
+    }
+    this.lastSheetNo = 6;
+    this.sheetsLeft = this.allSheets.length - this.lastSheetNo;
+    this.showStatus();
+  }
+
   showNextPage(){
-    if(this.needMorePage){
-        //Erase all this.sheetsOnPage
-        while(this.sheets.length > 0){
-          this.sheets.pop();
+    while(this.sheets.length > 0){
+      this.sheets.pop();
+    }
+
+    this.hasPrevPage = true;
+
+      if(this.sheetsLeft >= 6){
+
+        for(let index = this.lastSheetNo; index < (this.lastSheetNo + 6); index++){
+          this.sheets.push(this.allSheets[index]);
         }
+    
+        this.lastLastSheetNo = this.lastSheetNo;
+        this.lastSheetNo = this.lastSheetNo + 6;
+        this.sheetsLeft = this.allSheets.length - this.lastSheetNo;
 
-        if(this.lastRowNo === 0){
-          for (let index = 0; index < 7; index++) {
-            this.sheets.push(this.allSheets[index]);
-          }
-          console.clear();
+        this.showStatus();
 
-          this.lastRowNo = 6;
-          console.log("LastRowNO is : " +this.lastRowNo);
-
-          this.sheetsLeft = (this.allSheets.length - 1) - this.lastRowNo;
-          console.log("There is " + this.sheetsLeft + " sheets left!");
-        }
-        else if(this.lastRowNo > 0 && this.sheetsLeft > 0 && this.sheetsLeft <= 7){
-          console.log("Stog paging!");
-          for (let index = this.lastRowNo + 1; index < this.allSheets.length; index++) {
-            this.sheets.push(this.allSheets[index]);
-          }
-          console.clear();
-
+        if(this.sheetsLeft === 0){
           this.needMorePage = false;
-          this.hasPrevPage = true;
-          
-          this.lastRowNo = this.allSheets.length - 1;
-
-          console.log("LastRowNO is : " + this.lastRowNo);
-
-          // this.sheetsLeft = (this.allSheets.length - 1) - this.lastRowNo;
-          console.log("!There is " + this.sheetsLeft + " sheets left!");
-        }
-        else if(this.lastRowNo > 0 && this.sheetsLeft > 7){
-          for (let index = this.lastRowNo + 1; index < this.lastRowNo + 8; index++) {
-            this.sheets.push(this.allSheets[index]);
-          }
-          console.clear();
-
-          this.lastRowNo += 7;
-          console.log("LastRowNO is : " +this.lastRowNo);
-
-          this.sheetsLeft = (this.allSheets.length - 1) - this.lastRowNo;
-          console.log("HEY!There is " + this.sheetsLeft + " sheets left!");
-          
-          this.hasPrevPage = true;
-
-          var stopPaging = this.sheetsLeft === 0 ? true : false;
-          if(stopPaging){
-            this.needMorePage = false;
-            console.log("No more next page");
-          }
         }
 
+      }
+      else if(this.sheetsLeft < 6){
+        for(let index = this.lastSheetNo; index < this.allSheets.length; index++){
+          this.sheets.push(this.allSheets[index]);
+        }
         
+        this.needMorePage = false;
+        this.lastLastSheetNo = this.lastSheetNo;
+        this.lastSheetNo = this.lastSheetNo + this.sheetsLeft;
+        this.sheetsLeft = this.allSheets.length - this.lastSheetNo;
+        this.showStatus();
       }
   }
 
   showPrevPage(){
-    if(this.hasPrevPage){
-      while(this.sheets.length > 0){
-        this.sheets.pop();
+    while(this.sheets.length > 0){
+      this.sheets.pop();
+    }
+    let firstSheet = this.lastSheetNo - 5;
+
+    if(firstSheet > 0 && this.sheetsLeft != 0){
+      for(let index = firstSheet - 7; index < (firstSheet - 1); index++){
+        this.sheets.push(this.allSheets[index]);
       }
+      
+      this.lastLastSheetNo = this.lastSheetNo;
+      this.lastSheetNo = firstSheet - 1;
+      this.sheetsLeft = this.allSheets.length - this.lastSheetNo;
 
-      if(this.lastRowNo === 6){
-        for(let index = 0 ; index < 7 ; index++){
-          this.sheets.push(this.allSheets[index]);
-        }
-        console.clear();
-        
-        console.log("No more prev page.")
-        console.log("1lastRowNo:, " +  this.lastRowNo);
+      this.showStatus();
 
+      if(this.lastSheetNo === 6){
         this.hasPrevPage = false;
-        this.needMorePage = true;
-
-        
-      }
-      else if(this.lastRowNo > 6){
-        for(let index = this.lastRowNo - 13 ; index < this.lastRowNo - 6; index++){
-          this.sheets.push(this.allSheets[index]);
-        }
-        console.clear();
-
-        this.lastRowNo -= 7;
-        console.log("2lastRowNo:, " +  this.lastRowNo);
-
-        if(this.lastRowNo === 6){
-          this.hasPrevPage = false;
-          this.needMorePage = true;
-
-          this.sheetsLeft = (this.allSheets.length - 1) - this.lastRowNo;
-          console.log("There is " + this.sheetsLeft + " sheets left!");
-        }
-      }
-      else if(this.lastRowNo > 6 && this.sheetsLeft <= 7){
-        var end = this.lastRowNo - this.sheetsLeft;
-        var start = end - 6;
-        for(let index = start; index < end + 1; index++){
-          this.sheets.push(this.allSheets[index]);
-        }
-        console.clear();
-
-        this.lastRowNo = end - 7;
-        console.log("ENd " + end);
-        console.log("3lastRowNo:, " +  this.lastRowNo);
       }
     }
+    else if(this.sheetsLeft === 0){
+      // console.log(this.lastLastSheetNo);
+
+      for(let index = this.lastLastSheetNo - 6; index < this.lastLastSheetNo; index++){
+        this.sheets.push(this.allSheets[index]);
+      }
+
+      this.sheetsLeft = this.lastSheetNo - this.lastLastSheetNo;
+      this.lastSheetNo = this.lastLastSheetNo;
+      this.needMorePage = true;
+
+      this.showStatus();
+    }
+  }
+
+  showStatus(){
+    // console.log("Sheets left:" + this.sheetsLeft);
+    // console.log("Last Sheet No:" + this.lastSheetNo);
   }
 
   viewSongSheetDetails(sheetId: any){

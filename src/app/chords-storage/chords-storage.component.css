@@ -1,134 +1,157 @@
-*{
-    /* margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    box-sizing: border-box; */
+.container {
+    /* border: solid black 3px; */
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
     font-family: 'Varela Round', sans-serif;
+    color: white;
 }
 
-.container{
-    max-width: 2000px;
-    /* font-family: 'Varela Round', sans-serif; */
+.cont {
+    /* border: solid black 1px; */
+    padding: 0.5rem;
+    margin: 0;
 }
 
-.cont{
-    width: 100%;
-    align-items: center;
-    min-width: 300px;
-}
-
-/* Songslist (left) */
-
-.list-left {
-    padding: 1em;
-    float: left;
-    height: auto;
-    width: 25%;
-}
-
-.colored-cont{
-    background-color: #ff0000;
-    border-collapse: collapse;
-    padding: 2em;
-    border-radius: 1em;
-}
-
-.heading{
+.cont .header {
+    /* border: solid black 1px; */
     text-align: center;
-    color: whitesmoke;
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    padding: 1rem 0;
 }
 
-.colored-row{
-    background-color: antiquewhite;
-    color: black(255, 255, 255);
+.cont .header p {
+    margin: 0;
 }
 
-.colored-row:hover{
-    background-color: rgb(255, 0, 0);
-    color: whitesmoke;
+.body {
+    /* border: solid black 1px; */
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    gap: 1rem;
+
+    padding: 3rem;
+    margin: 0.5rem 0;
+
+    height: 30vh;
+
+    background-color: #7992bb;
 }
 
-.footer .button-colored{
-    /* background-color: antiquewhite;
-    color: black(255, 255, 255); */
+.body .sheet {
+    /* border: solid black 1px; */
+    width: 25vh;
+    height: 20vh;
+
+    display: grid;
+    background-color: rgb(217, 217, 217);
+    color: black;
+    border-radius: 10px;
+    transition: 0.3s;
+
+    font-size: 1rem;
+
+    /* border-radius: 15px; */
+}
+
+.body .sheet:hover {
+    background-color: #0066FF;
+    color: white;
+    /* border: solid gainsboro 1px; */
+    font-weight: 900;
     cursor: pointer;
-    width: 100%;
-    height: 46px;
-    border-radius: 3px;
-    font-size: 15px;
-    margin-top: 15px;
-    color: #fff;
-    background: linear-gradient(
-        0deg, #124ce7, #3784ff
-    );
+    width: 26vh;
+    height: 23vh;
 }
 
-.footer .paging-button{
-    display: block;
+.body .sheet .title {
+    /* border: solid black 1px; */
+    font-size: 1.3rem;
+    text-align: center;
     padding: 0.5rem;
 }
 
-.footer #left{
-    float: left;
-    width: 45%;
+.body .sheet .singer {
+    /* border: solid black 1px; */
+    padding: 0.2rem;
 }
 
-.footer #left i {
-    margin-right: 1rem;
+.footer {
+    /* border: solid black 1px; */
+    padding: 1rem;
+    margin: 0.5rem 0;
 }
 
-.footer #right{
-    float: right;
-    width: 45%;
+.footer .paging {
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: space-between;
 }
 
-.footer #right i {
-    margin-left: 1rem;
+.footer .paging button {
+    padding: 0.5em;
+    height: 5rem;
+    width: 20rem;
+    background-color: #0e9637;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+    border: 0;
+}
+
+.footer .paging button span {
+    margin: 0 2rem;
+}
+
+.footer .paging button i {
+    font-size: xx-large;
+    transition: 0.3s;
+}
+
+.footer .paging button:hover {
+    background-color: #31864b;
+    cursor: pointer;
 }
 
 
-/* ***************************************************** */
 
-/* WatchList */
-
-.main-content {
-    padding: 1em;
-    margin-left: 1em;
-    display: inline-block;
-    height: auto;
-    width: 73%; 
-} 
-
-
-.colored-cont-main {
-    background-color: #ff0000;
-    border-collapse: collapse;
-    padding: 2em;
-    border-radius: 1em;
+.footer .add-new {
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: space-between;
 }
 
-.colored-row-main{
-    background-color: antiquewhite;
-    color: rgb(0, 0, 0);
-    width: 75%;
-    align-items: center;
-    justify-content: center;
-} 
+.footer .add-new button {
+    padding: 0.5em;
+    margin-top: 1rem;
+    height: 5rem;
+    width: 100%;
+    background-color: #2239d0;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+    border: 0;
+}
 
+.footer .add-new button span {
+    margin: 0 2rem;
+}
 
+.footer .add-new button i {
+    font-size: xx-large;
+    transition: 0.3s;
+}
 
-
-
-/* .universal-font {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-} */
-
-
-
-
-
-
+.footer .add-new button:hover {
+    background-color: #000e67;
+    cursor: pointer;
+}
 
 
 
