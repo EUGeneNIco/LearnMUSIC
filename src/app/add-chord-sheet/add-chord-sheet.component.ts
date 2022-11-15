@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SongSheetService } from '../service/song-sheet.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class AddChordSheetComponent implements OnInit {
   get contents() { return this.addForm.get('contents'); }
 
   constructor(
+    private toastr: ToastrService,
     private fb: FormBuilder,
     public songSheetService: SongSheetService,
     public router: Router
@@ -37,17 +39,18 @@ export class AddChordSheetComponent implements OnInit {
         contents: ['', Validators.required]
     })
   }
-};
+  };
 
   addChordSheet(){
     var record = this.addForm.getRawValue();
     this.songSheetService.addSongSheet(record).subscribe({
       next: (data: any) => {
-        console.log(data);
-        this.backToListPage();
+        // console.log(data);
+        this.toastr.success("Song sheet added.");
+        setTimeout(() => this.backToListPage(), 500);
       },
       error: (e) => {
-        console.log(e);
+        this.toastr.error(e.error);
       }
     })
   }
@@ -59,5 +62,4 @@ export class AddChordSheetComponent implements OnInit {
   cancel(){
     this.backToListPage();
   }
-
 }

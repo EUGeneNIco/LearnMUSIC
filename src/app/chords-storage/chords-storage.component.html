@@ -15,11 +15,15 @@
         </div>
         <div class="footer">
             <div class="paging">
-                <button (click)="showPrevPage()" *ngIf="hasPrevPage"><i class='bx bxs-skip-previous-circle' ></i><span>Previous Page</span></button>
-                <button (click)="showNextPage()" *ngIf="needMorePage"><span>Next Page</span><i class='bx bxs-skip-next-circle' ></i></button>
+                <div class="left">
+                    <button (click)="showPrevPage()" *ngIf="hasPrevPage"><i class='bx bxs-skip-previous-circle' ></i><span>Previous Page</span></button>
+                </div>
+                <div class="right">
+                    <button (click)="showNextPage()" *ngIf="needMorePage"><span>Next Page</span><i class='bx bxs-skip-next-circle' ></i></button>
+                </div>
             </div>
             <div class="add-new">
-                <button><span>Add New sheet</span><i class='bx bx-list-plus' ></i></button>
+                <button (click)="addSongSheet()"><span>Add New sheet</span><i class='bx bx-list-plus' ></i></button>
             </div>
         </div>
     </div>

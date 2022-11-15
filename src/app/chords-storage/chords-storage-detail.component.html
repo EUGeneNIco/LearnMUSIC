@@ -4,76 +4,38 @@
       <div class="header">
           <p>Songsheet <i class='bx bxs-music'></i></p>
       </div>
-      <form class="body">
-          <div class="input-text">
-              <div class="text">
-                <span>Title</span>
-                <input type="songTitle">
-              </div>
-              <div class="text">
-                <span >Singer</span>
-                <input type="singer">
-              </div>
-              <div class="text">
-                <span>Key Signature</span>
-                <input type="keySignature">
-              </div>
+      <form class="body" [formGroup]="addForm">
+        <div class="details">
+          <div class="input-group input-text mb-0" style="width:100%">
+            <span class="input-group-text label-span" id="basic-addon1">Title</span>
+            <input class="form-control" formControlName="songTitle" type="text" placeholder="Title of the song" aria-label="default input example">
           </div>
-          <div class="input-text-area">
-            <label for="contents">Content</label>
-            <input type="contents">
+          <div class="input-group input-text mb-0 text-input" style="width:100%">
+            <span class="input-group-text label-span" id="basic-addon1">Singer</span>
+            <input class="form-control" formControlName="singer" type="text" placeholder="Name of singer or band" aria-label="default input example">
           </div>
+          <div class="input-group input-text mb-0" style="width:100%">
+            <span class="input-group-text label-span" id="basic-addon1">Key</span>
+            <input class="form-control" formControlName="keySignature" type="text" placeholder="C, C#, Gm ..." aria-label="default input example">
+          </div>
+        </div>
+        <div class="content">
+          <div class="input-group input-text-area mb-0" style="width:100%">
+            <textarea class="form-control" formControlName="contents" aria-label="With textarea"></textarea>
+          </div>
+        </div>
       </form>
       <div class="footer">
           <div class="btn-left">
-              <button><span>Edit</span><i class='bx bx-list-plus' ></i></button>
-              <button><span>Save</span><i class='bx bx-list-plus' ></i></button>
+              <button *ngIf="!editMode"  type="button" (click)="edit()" ><span>Edit</span><i class='bx bx-edit-alt'></i></button>
+              <button *ngIf="editMode" type="button" (click)="updateSheet()"  ><span>Save</span><i class='bx bxs-save' ></i></button>
           </div>
           <div class="btn-right">
-              <button><span>Cancel</span><i class='bx bx-list-plus' ></i></button>
-              <button><span>Close</span><i class='bx bx-list-plus' ></i></button>
+              <button *ngIf="!editMode" type="button" (click)="backToListPage()"><span>Close</span><i class='bx bx-window-close' ></i></button>
+              <button *ngIf="editMode" type="button" (click)="backToListPage()" ><span>Cancel</span><i class='bx bx-window-close' ></i></button>
+              <button id="delete" *ngIf="editMode" type="button" (click)="deleteSongSheet()" ><span>Delete</span><i class='bx bx-trash' ></i></button>
           </div>
       </div>
   </div>
 </div>
 
-
-
-
-
-
-
-
-<!-- <div class="container my-5">
-  <div class="cont">
-    <div class="content-details">
-      <div class="heading">
-          <h1>Songsheet</h1>
-      </div>
-        <form [formGroup]="addForm">
-            <div class="input-group input-text mb-3 text-input" style="width:100%">
-              <span class="input-group-text label-span" id="basic-addon1">Singer</span>
-              <input class="form-control" formControlName="songTitle" type="text" placeholder="Default input" aria-label="default input example">
-            </div>
-            <div class="input-group input-text mb-3" style="width:100%">
-              <span class="input-group-text label-span" id="basic-addon1">Title</span>
-              <input class="form-control" formControlName="singer" type="text" placeholder="Default input" aria-label="default input example">
-            </div>
-            <div class="input-group input-text mb-3" style="width:100%">
-              <span class="input-group-text label-span" id="basic-addon1">Key</span>
-              <input class="form-control" formControlName="keySignature" type="text" placeholder="Default input" aria-label="default input example">
-            </div>
-            <div class="input-group input-text-area mb-3" style="width:100%">
-              <textarea class="form-control" formControlName="contents" aria-label="With textarea"></textarea>
-            </div>
-            <div class="footer">
-              <button *ngIf="editMode" pButton pRipple icon="pi pi-check" class="btn button-colored button-left" type="submit" (click)="updateSheet()">Save</button>
-              <button *ngIf="!editMode" pButton pRipple icon="pi pi-times" class="btn button-colored  button-left" type="button" (click)="edit()" >Edit</button>
-              <button *ngIf="editMode" class="btn button-colored  button-left" type="button"(click)="cancelEdit()" >Cancel</button>
-              <button *ngIf="!editMode" class="btn button-colored  button-left" type="button" (click)="backToListPage()" >Back</button>
-              <button *ngIf="editMode" pButton pRipple icon="pi pi-trash" class="btn button-colored button-left" type="button" (click)="deleteSongSheet()" >Delete</button>
-            </div>
-        </form>
-    </div>
-  </div>
-</div> -->

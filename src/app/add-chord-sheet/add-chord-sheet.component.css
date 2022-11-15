@@ -1,96 +1,128 @@
-* {
+.container {
+    /* border: solid black 3px; */
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
     font-family: 'Varela Round', sans-serif;
+    color: white;
+    font-size: 1.2rem;
 }
 
-.container{
+.cont {
+    /* border: solid black 1px; */
+    padding: 0.5rem;
+    margin: 0;
+}
+
+.cont .header {
+    /* border: solid black 1px; */
+    height: 10vh;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 1rem 0;
+}
+
+.cont .header p {
+    margin: 0;
+}
+
+.body {
+    /* border: solid black 1px; */
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+    height: 60vh;
+    background-color: #7992bb;
     border-radius: 20px;
-    padding: 0.5em;
-    background-color: red;
-    max-width: 800px;
+}
+
+.body span {
+    font-weight: 800;
+}
+
+.body div {
+    background-color: #2b528d;
+}
+
+.body .details {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    flex: wrap;
+    gap: 0.7rem;
 }
 
-.cont{
-    color: whitesmoke;
-    width: 80%;
-    align-items: center;
-    min-width: 300px;
+.body .input-text{
+    padding: 1rem;
 }
 
-.heading{
-    margin-bottom: 2em;
+.body  .content  .input-text-area{
+    /* border: solid black 1px; */
+    padding: 1rem;
+    height: 46vh;
 }
 
-.label-span{
-    width: 80px;
-    color: rgb(0, 0, 0);
-    background-color: antiquewhite;
-}
-
-
-
-.button-colored{
-    background-color: antiquewhite;
-    color: black(255, 255, 255);
-}
-
-.button-colored:hover{
-    background-color: rgb(255, 0, 0);
-    color: whitesmoke;
-}
-
-
-.container-details{
+.body .content .input-text-area textarea{
     width: 100%;
-}
-/* 
-.cont{
-    background-color: #4a4a4a;
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-    padding: 2em;
-    border-radius: 1em;
-} */
-
-.heading{
-    text-align: center;
-    color: whitesmoke;
+    height: 42vh;
+    /* margin-top: 0.5rem; */
 }
 
-.content-details {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-    /* margin: 10px; */
-    border-radius: 500px;
+.cont .footer {
+    /* border: solid black 1px; */
+    padding: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    gap: 3rem;
 }
 
-
-
-.input-text{
-    border-collapse: collapse;
-    text-align: center;
-    width: 30%;
-}
-
-.input-text-area{
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+.cont .footer div{
+    /* border: solid black 1px; */
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    gap: 3rem;
     width: 50%;
-    height: 500px;
+}
+
+.cont .footer .btn-left{
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    gap: 3rem;
+}
+
+.cont .footer .btn-right{
+    display: flex;
+    flex-direction: row;
+    flex: wrap;
+    gap: 3rem;
+    justify-content: right;
+}
+
+.cont .footer div button{
+    padding: 0.5em;
+    margin-top: 1rem;
+    height: 5rem;
+    width: 45%;
+    background-color: #0e9637;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+    border: 0;
+}
+
+.cont .footer div button:hover{
+    background-color: #31864b;
+    cursor: pointer;
+}
+
+.footer div button span {
+    margin: 0 2rem;
 }
 
 
-
-.button-left{
-    float: left;
-}
-
-.button-x{
-    float: left;
-    margin-left: 10%;
-}

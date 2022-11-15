@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { SongSheetService } from '../service/song-sheet.service';
 
@@ -25,6 +26,7 @@ export class ChordsStorageDetailComponent implements OnInit {
   get contents() { return this.addForm.get('contents'); }
 
   constructor(
+    private toastr: ToastrService,
     public songSheetService: SongSheetService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -43,11 +45,8 @@ export class ChordsStorageDetailComponent implements OnInit {
         if(id){
           this.songSheetService.getSheetById(id).subscribe({
             next: (data: any) => {
-              console.log(data);
-              this.songTitle?.setValue(data.songTitle);
-              this.singer?.setValue(data.singer);
-              this.keySignature?.setValue(data.keySignature);
-              this.contents?.setValue(data.contents);
+              // console.log(data);
+              this.addForm.patchValue(data);
             },
             error: (e) => {
               console.log(e);
@@ -101,7 +100,7 @@ export class ChordsStorageDetailComponent implements OnInit {
 
   updateSheet(){
     var record = this.addForm.getRawValue();
-    console.log(record);
+    // console.log(record);
     this.songSheetService.updateSheet({
       songTitle: record.songTitle,
       singer: record.singer,
@@ -111,10 +110,13 @@ export class ChordsStorageDetailComponent implements OnInit {
     }).subscribe({
       next:(data: any) => {
         // console.log(data);
-        this.backToListPage();
+        this.toastr.success("Song sheet updated.")
+        setTimeout(() => this.backToListPage(), 500);
+        ;
       },
       error:(e) => {
-        console.log(e);
+        this.toastr.error(e.error);
+        // console.log(e);
       }
     })
   }
@@ -123,19 +125,13 @@ export class ChordsStorageDetailComponent implements OnInit {
     this.songSheetService.delete(this.songSheetId).subscribe({
       next: (data: any) => {
         // console.log(data);
-        this.backToListPage();
+        this.toastr.success("Song sheet deleted.")
+        setTimeout(() => this.backToListPage(), 500);
       },
       error: (e) => {
-        console.log(e);
+        this.toastr.error(e.error);
       }
     })
-  }
-
-  cancelEdit(){
-    console.log("Cancelling...");
-
-    this.backToListPage();
-    
   }
 
   backToListPage(){

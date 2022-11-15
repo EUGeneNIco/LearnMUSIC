@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SongSheetService } from '../service/song-sheet.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class ChordsStorageComponent implements OnInit {
   lastLastSheetNo: any = 0;
 
   constructor(
+    private toastr: ToastrService,
     private songSheetService: SongSheetService, 
     private fb: FormBuilder,
     public router: Router,
@@ -64,7 +66,7 @@ export class ChordsStorageComponent implements OnInit {
         }
       },
       error: (e) => {
-        console.log(e);
+        this.toastr.error(e.error);
       }
     })
   }
@@ -157,13 +159,8 @@ export class ChordsStorageComponent implements OnInit {
   }
 
   viewSongSheetDetails(sheetId: any){
-    console.log(sheetId);
-    console.log("View card details... " + sheetId);
+    // console.log("View card details... " + sheetId);
     this.router.navigateByUrl('chords/edit/' + sheetId);
-    // this.getCardDetail(cardId);
-    // this.viewMode = true;
-    // this.addForm.disable();
-    // this.id = cardId;
   }
 
   addSongSheet(){
