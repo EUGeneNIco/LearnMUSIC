@@ -21,9 +21,11 @@ namespace LearnMUSIC
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
+      this.JWT_KEY = Configuration["JWT:Key"].ToString();
     }
 
     public IConfiguration Configuration { get; }
+    private readonly string JWT_KEY;
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
@@ -94,6 +96,9 @@ namespace LearnMUSIC
 
       // Add Framework Services
       services.AddTransient<IDateTime, MachineDateTime>();
+
+      // JwtAuthenticationManager
+      services.AddScoped<IJwtAuthenticationManager>(manager => new JwtAuthenticationManager(this.JWT_KEY, manager.GetService<IMediator>()));
     }
   }
 }

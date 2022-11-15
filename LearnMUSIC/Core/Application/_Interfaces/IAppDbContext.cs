@@ -10,6 +10,8 @@ namespace LearnMUSIC.Core.Application._Interfaces
   {
     DbSet<SongSheet> SongSheets { get; set; }
 
+    DbSet<User> Users { get; set; }
+
     /******************************************************************************/
 
     EntityEntry Remove(object entity);

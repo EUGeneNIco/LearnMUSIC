@@ -12,6 +12,8 @@ import { AddChordSheetComponent } from './add-chord-sheet/add-chord-sheet.compon
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { Globals } from './globals';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-    })
+    }),
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [Globals,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

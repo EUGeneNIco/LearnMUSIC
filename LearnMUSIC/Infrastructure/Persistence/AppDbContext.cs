@@ -8,6 +8,11 @@ namespace LearnMUSIC.Infrastructure.Persistence
   {
     public DbSet<SongSheet> SongSheets { get; set; }
 
+    public DbSet<User> Users { get; set; }
+
+
+
+
     public AppDbContext() { }
 
     public AppDbContext(DbContextOptions options) : base(options)
