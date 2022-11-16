@@ -1,3 +1,8 @@
+body, html {
+    height: 100%;
+  }
+
+
 .container {
     /* border: solid black 3px; */
     height: 100%;
@@ -6,6 +11,9 @@
     background-image: linear-gradient(to bottom, #0066FF, #7791b7);
     font-family: 'Varela Round', sans-serif;
     color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .cont {

@@ -28,6 +28,7 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
       //Add
       var createdOn = this.dateTime.Now;
+
       var user = new User
       {
         Username = request.Username,
@@ -35,11 +36,37 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
         FirstName = request.FirstName.Trim(),
         LastName = request.LastName.Trim(),
+        Email = request.Email.Trim(),
 
         CreatedOn = createdOn,
       };
 
       this.dbContext.Users.Add(user);
+
+      await this.dbContext.SaveChangesAsync(cancellationToken);
+
+
+      var modules = new List<Module> {
+        new Module { Name = "Home", Category = "Usual"},
+        new Module { Name = "SongSheet", Category = "Usual"},
+        new Module { Name = "Admin", Category = "Management"},
+      };
+
+      foreach(var module in modules)
+      {
+        var moduleAccess = new UserModuleAccess
+        {
+          UserId = user.Id,
+          Module = new Module
+          {
+            Name = module.Name,
+            Category = module.Category,
+          },
+          HasAccess = true,
+        };
+
+        this.dbContext.UserModuleAccesses.Add(moduleAccess);
+      }
 
       await this.dbContext.SaveChangesAsync(cancellationToken);
 

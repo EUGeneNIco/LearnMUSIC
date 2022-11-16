@@ -11,8 +11,8 @@ export class SongSheetService {
   baseApiUrl: string = environment.baseApiURL
   constructor(private http: HttpClient) { }
   
-  getAllMembers() {
-    return this.http.get(this.baseApiUrl + '/api/SongSheets/getAll');
+  getAllSheets(userId: any) {
+    return this.http.get(this.baseApiUrl + '/api/SongSheets/getAll/'+ userId);
   }
 
   getSheetById(id: any) {

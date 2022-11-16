@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../service/auth.service';
 import { SongSheetService } from '../service/song-sheet.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class ChordsStorageComponent implements OnInit {
   lastLastSheetNo: any = 0;
 
   constructor(
+    private auth: AuthService,
     private toastr: ToastrService,
     private songSheetService: SongSheetService, 
     private fb: FormBuilder,
@@ -43,22 +45,17 @@ export class ChordsStorageComponent implements OnInit {
 
     this.videos = [ 
       { src: "https://www.youtube.com/embed/6cuoH5M8U9Y"},
-      { src: "https://www.youtube.com/embed/oXfNViGuojw"},
+      { src: "https://www.youtube.com/embed/oXfNViGuojw"},  
     ]
   }
 
   getAllCards(){
-    this.songSheetService.getAllMembers().subscribe({
+    this.songSheetService.getAllSheets(this.auth.userID).subscribe({
       next: (data: any) => {
         //console.log(data);
         if(data.length > 7){
           this.needMorePage = true;
           this.allSheets = data;
-          
-          // console.log("Need more page?? " + this.needMorePage);
-          // console.log("New sheets: " +  this.sheets.length);
-          // console.log("All sheets: " + this.allSheets.length);
-          // this.showNextPage();
           this.showFirstPage();
         }
         else{
@@ -139,7 +136,6 @@ export class ChordsStorageComponent implements OnInit {
       }
     }
     else if(this.sheetsLeft === 0){
-      // console.log(this.lastLastSheetNo);
 
       for(let index = this.lastLastSheetNo - 6; index < this.lastLastSheetNo; index++){
         this.sheets.push(this.allSheets[index]);
@@ -159,7 +155,6 @@ export class ChordsStorageComponent implements OnInit {
   }
 
   viewSongSheetDetails(sheetId: any){
-    // console.log("View card details... " + sheetId);
     this.router.navigateByUrl('chords/edit/' + sheetId);
   }
 

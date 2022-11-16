@@ -20,5 +20,12 @@ namespace LearnMUSIC.Core.Domain.Entities
 
     public bool IsLocked { get; set; }
 
+    public virtual ICollection<UserModuleAccess> ModuleAccesses { get; set; }
+
+    public User()
+    {
+      this.ModuleAccesses = new HashSet<UserModuleAccess>();
+    }
+
   }
 }

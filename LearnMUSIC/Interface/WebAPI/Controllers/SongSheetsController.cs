@@ -30,7 +30,8 @@ namespace LearnMUSIC.Interface.WebAPI.Controllers
     public async Task<ActionResult> Create([FromBody] CreateSongSheetCommand command)
     {
       try
-      {
+      {;
+
         var data = await this.Mediator.Send(command);
 
         return new JsonResult(data);
@@ -85,15 +86,15 @@ namespace LearnMUSIC.Interface.WebAPI.Controllers
       }
     }
     //Get All
-    [HttpGet("getAll")]
+    [HttpGet("getAll/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> GetAll()
+    public async Task<ActionResult> GetAll(long id)
     {
       try
       {
-        var data = await this.Mediator.Send(new GetAllSongSheetsQuery { });
+        var data = await this.Mediator.Send(new GetAllSongSheetsQuery { UserId = id });
 
         return new JsonResult(data);
       }

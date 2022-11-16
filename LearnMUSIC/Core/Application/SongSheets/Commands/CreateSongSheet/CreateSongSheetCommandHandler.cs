@@ -35,6 +35,7 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
           KeySignature = request.KeySignature.Trim(),
           Contents = request.Contents.Trim(),
           IsDeleted = false,
+          UserId = request.UserId,
 
           CreatedOn = createdOn,
       };

@@ -5,6 +5,7 @@ using LearnMUSIC.Core.Application._Interfaces;
 using LearnMUSIC.Core.Application.Users.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace LearnMUSIC.Core.Application.Users.Queries.AuthenticateUser
 {
@@ -44,6 +45,11 @@ namespace LearnMUSIC.Core.Application.Users.Queries.AuthenticateUser
           DisplayName = $"{user.FirstName} {user.LastName}",
           EmailAddress = user.Email
         };
+
+        var accessibleModules = string.Join(",", user.ModuleAccesses
+                                     .Where(x => x.HasAccess).Select(x => x.Module.Name));
+
+        userClaims.Claims.Add(new Claim("AccessibleModules", accessibleModules));
 
         return userClaims;
       }

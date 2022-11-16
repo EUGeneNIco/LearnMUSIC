@@ -1,4 +1,5 @@
-﻿using MediatR;
+using LearnMUSIC.Common.Helper;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,9 @@ namespace LearnMUSIC.Controllers
 
         protected IMediator Mediator => _mediator ?? (_mediator = HttpContext.RequestServices.GetService<IMediator>());
 
-        //protected long GetUserIdFromClaims()
-        //{
-        //    return User.Claims.First(c => c.Type == "UserGuid").Value.ConvertToLong();
-        //}
+    protected long GetUserIdFromClaims()
+    {
+      return User.Claims.First(c => c.Type == "UserGuid").Value.ConvertToLong();
     }
+  }
 }

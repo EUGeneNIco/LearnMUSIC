@@ -4,6 +4,7 @@ using LearnMUSIC.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearnMUSIC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116121132_Add_UserMOduleAccess_ModuleID")]
+    partial class Add_UserMOduleAccess_ModuleID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace LearnMUSIC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Modules");
+                    b.ToTable("Module");
                 });
 
             modelBuilder.Entity("LearnMUSIC.Core.Domain.Entities.SongSheet", b =>
@@ -75,9 +77,6 @@ namespace LearnMUSIC.Migrations
                     b.Property<string>("SongTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -155,7 +154,7 @@ namespace LearnMUSIC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserModuleAccesses");
+                    b.ToTable("UserModuleAccess");
                 });
 
             modelBuilder.Entity("LearnMUSIC.Core.Domain.Entities.UserModuleAccess", b =>

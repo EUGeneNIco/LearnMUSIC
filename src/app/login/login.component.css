@@ -7,6 +7,14 @@
     font-family: 'Varela Round', sans-serif;
 }
 
+.navbar {
+    font-size: 1rem !important;
+}
+
+.navbar-theme {
+    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
+}
+
 body{
     height: 100vh;
     display: flex;

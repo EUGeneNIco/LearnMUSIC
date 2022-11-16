@@ -20,7 +20,8 @@ namespace LearnMUSIC.Core.Application.SongSheets.Queries.GetAllSongSheets
     public async Task<IEnumerable<SongSheetDto>> Handle(GetAllSongSheetsQuery request, CancellationToken cancellationToken)
     {
       var query = await this.dbContext.SongSheets
-        .Where(x => !x.IsDeleted).ToListAsync(cancellationToken);
+        .Where(x => x.UserId == request.UserId && !x.IsDeleted)
+        .ToListAsync(cancellationToken);
 
       return this.mapper.Map<IEnumerable<SongSheetDto>>(query);
     }

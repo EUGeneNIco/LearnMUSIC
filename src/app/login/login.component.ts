@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NavComponent } from '../nav/nav.component';
 import { AuthService } from '../service/auth.service';
 import { ApiCallStatusCodes } from '../_enums/enums';
 
@@ -53,8 +54,9 @@ export class LoginComponent implements OnInit {
           console.log("Object (Payload): ",this.authService.payLoad);
           console.log("User id: ",this.authService.userID);
           console.log("Name: ",this.authService.userName);
+          console.log("Modules: ",this.authService.accessibleModulesOfUser);
 
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('chords');
         },
         error: (e) => {
 

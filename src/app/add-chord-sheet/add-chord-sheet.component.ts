@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../service/auth.service';
 import { SongSheetService } from '../service/song-sheet.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class AddChordSheetComponent implements OnInit {
   get contents() { return this.addForm.get('contents'); }
 
   constructor(
+    private authService: AuthService,
     private toastr: ToastrService,
     private fb: FormBuilder,
     public songSheetService: SongSheetService,
@@ -43,7 +45,14 @@ export class AddChordSheetComponent implements OnInit {
 
   addChordSheet(){
     var record = this.addForm.getRawValue();
-    this.songSheetService.addSongSheet(record).subscribe({
+    this.songSheetService.addSongSheet({
+      userId: this.authService.userID,
+      songTitle: record.songTitle,
+      singer: record.singer,
+      keySignature: record.keySignature,
+      contents: record.contents,
+    }
+      ).subscribe({
       next: (data: any) => {
         // console.log(data);
         this.toastr.success("Song sheet added.");

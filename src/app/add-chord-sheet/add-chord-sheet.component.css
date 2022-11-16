@@ -116,7 +116,7 @@
     border: 0;
 }
 
-.cont .footer div button:hover{
+.cont .footer .btn-left button:hover{
     background-color: #31864b;
     cursor: pointer;
 }
@@ -124,5 +124,14 @@
 .footer div button span {
     margin: 0 2rem;
 }
+
+.cont .footer .btn-right button{
+    background-color: #15407d;
+}
+
+.cont .footer .btn-right button:hover{
+    background-color: blue;
+}
+
 
 
