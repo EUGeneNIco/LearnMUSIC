@@ -45,11 +45,10 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
       await this.dbContext.SaveChangesAsync(cancellationToken);
 
-
       var modules = new List<Module> {
         new Module { Name = "Home", Category = "Usual"},
         new Module { Name = "SongSheet", Category = "Usual"},
-        new Module { Name = "Admin", Category = "Management"},
+        //new Module { Name = "Admin", Category = "Management"},
       };
 
       foreach(var module in modules)

@@ -63,6 +63,10 @@ export class AuthService extends BaseService {
         return this.http.post(this.API_URL + '/api/Auth/login', formData, { responseType: 'text' });
     }
 
+    register(formData: any) {
+        return this.http.post(this.API_URL + '/api/Auth/register', formData, { responseType: 'text' });
+    }
+
     // userHasAccessToModule(accessibleModules: string[], moduleToCheck: string): boolean {
     //     const modules = accessibleModules.map(module => module.toUpperCase());
 

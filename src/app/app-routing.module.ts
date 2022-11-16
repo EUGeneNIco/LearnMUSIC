@@ -7,6 +7,7 @@ import { ChordsStorageDetailComponent } from './chords-storage/chords-storage-de
 import { ChordsStorageComponent } from './chords-storage/chords-storage.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'chords/add', canActivate: [AuthGuard],component: AddChordSheetComponent, data: { module: 'SongSheet'}
+  },
+  {
+    path: 'register',component: RegisterComponent,
   },
   {
     path: 'login', component: LoginComponent

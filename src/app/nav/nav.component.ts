@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class NavComponent implements OnInit {
   loggedOut: boolean = false;
 
   constructor(
+    private toastr: ToastrService,
     private authService: AuthService,
     private router: Router,
   ) { }
@@ -25,6 +27,7 @@ export class NavComponent implements OnInit {
 
     this.router.navigateByUrl('login');
     this.loggedOut = true;
+    this.toastr.success("Logged out.");
   }
 
 }

@@ -49,7 +49,7 @@ body{
 
 .login-box{
     width: 400px;
-    height: min-content;
+    height: max-content;
     padding: 40px;
     background: #fff;
     text-align: center;
@@ -116,7 +116,6 @@ form .forgot {
     cursor: pointer;
     color: #3784ff;
     font-size: 18px;
-    margin-right: 1.5rem;
 }
 
 form .forgot:hover{

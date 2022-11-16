@@ -30,7 +30,6 @@ export class AuthGuard implements CanActivate {
         return hasAccess;
       }
       else{
-        this.toastr.error("Session ended.")
         console.log("Navigated by Auth Guard");
         this.router.navigateByUrl('login');
         return false;

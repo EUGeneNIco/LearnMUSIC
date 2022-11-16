@@ -56,7 +56,8 @@ export class LoginComponent implements OnInit {
           console.log("Name: ",this.authService.userName);
           console.log("Modules: ",this.authService.accessibleModulesOfUser);
 
-          this.router.navigateByUrl('chords');
+          this.router.navigateByUrl('');
+          this.toastr.success("Welcome Back.")
         },
         error: (e) => {
 
@@ -80,6 +81,10 @@ export class LoginComponent implements OnInit {
     else{
       this.toastr.warning("Enter username and password.")
     }
+  }
+
+  register(){
+    this.router.navigateByUrl('register');
   }
 
 }
