@@ -46,6 +46,13 @@ export class LoginComponent implements OnInit {
       }).subscribe({
         next:(data: any) => {
 					this.authService.authToken = JSON.parse(data).token;
+          console.log("Orig Token: ", data);
+          console.log("Parsed Token: ", this.authService.authToken);
+          console.log("Parsed Token (Subject): ", this.authService.authToken.split('.')[1]);
+          console.log("JSON (after atob) ",this.authService.atob);
+          console.log("Object (Payload): ",this.authService.payLoad);
+          console.log("User id: ",this.authService.userID);
+          console.log("Name: ",this.authService.userName);
 
           this.router.navigateByUrl('');
         },

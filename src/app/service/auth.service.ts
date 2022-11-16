@@ -36,7 +36,15 @@ export class AuthService extends BaseService {
 
         return payLoad.unique_name;
     }
+    // *********************************For Studying purposes only**************************************
+    get payLoad(): any {
+        return JSON.parse(window.atob(this.authToken.split('.')[1]));
+    }
 
+    get atob(): any {
+        return window.atob(this.authToken.split('.')[1]);
+    }
+    // *************************************************************************************************
     constructor(
       private globals: Globals,
       public override http: HttpClient) {
