@@ -43,10 +43,6 @@ export class ChordsStorageComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCards();
 
-    this.videos = [ 
-      { src: "https://www.youtube.com/embed/6cuoH5M8U9Y"},
-      { src: "https://www.youtube.com/embed/oXfNViGuojw"},  
-    ]
   }
 
   getAllCards(){
@@ -128,15 +124,15 @@ export class ChordsStorageComponent implements OnInit {
       this.lastLastSheetNo = this.lastSheetNo;
       this.lastSheetNo = firstSheet - 1;
       this.sheetsLeft = this.allSheets.length - this.lastSheetNo;
-
+      
       this.showStatus();
 
       if(this.lastSheetNo === 6){
         this.hasPrevPage = false;
+        console.log("No prev!!")
       }
     }
     else if(this.sheetsLeft === 0){
-
       for(let index = this.lastLastSheetNo - 6; index < this.lastLastSheetNo; index++){
         this.sheets.push(this.allSheets[index]);
       }
@@ -146,12 +142,16 @@ export class ChordsStorageComponent implements OnInit {
       this.needMorePage = true;
 
       this.showStatus();
+      if(this.lastSheetNo === 6){
+        this.hasPrevPage = false;
+        console.log("No prev!!")
+      }
     }
   }
 
   showStatus(){
-    // console.log("Sheets left:" + this.sheetsLeft);
-    // console.log("Last Sheet No:" + this.lastSheetNo);
+    console.log("Sheets left:" + this.sheetsLeft);
+    console.log("Last Sheet No:" + this.lastSheetNo);
   }
 
   viewSongSheetDetails(sheetId: any){

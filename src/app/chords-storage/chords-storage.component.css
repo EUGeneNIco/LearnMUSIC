@@ -7,6 +7,8 @@ body, html {
     /* border: solid black 3px; */
     height: 100%;
     width: 100%;
+    min-height: 50vh;
+    min-width: 375px;
     padding: 1rem;
     background-image: linear-gradient(to bottom, #0066FF, #7791b7);
     font-family: 'Varela Round', sans-serif;
@@ -39,15 +41,38 @@ body, html {
     /* border: solid black 1px; */
     display: flex;
     flex-direction: row;
-    flex: wrap;
+    /* flex-wrap: wrap; */
+    flex: 1 1 20%;
     gap: 1rem;
 
     padding: 3rem;
     margin: 0.5rem 0;
 
-    height: 30vh;
+    height: 50%;
 
     background-color: #7992bb;
+}
+
+@media (max-width:1200px) {
+    .body{
+        /* border: solid red 5px; */
+        flex-wrap: wrap;
+        flex-basis: 30%;
+        justify-content: center;
+    }
+
+    .footer {
+        /* border: solid red 5px; */
+    }
+    .footer .paging {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer .paging div button{
+        width: 100%;
+    }
 }
 
 .body .sheet {

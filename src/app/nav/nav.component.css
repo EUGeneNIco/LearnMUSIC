@@ -6,3 +6,7 @@
 .navbar-theme {
     background-image: linear-gradient(to bottom, #0066FF, #7791b7);
 }
+
+.nav-item:hover{
+    font-weight: 600;
+}
