@@ -6,12 +6,19 @@
             <p>Songlist <i class='bx bxs-music'></i></p>
         </div>
         <div class="body">
-            <div (click)="viewSongSheetDetails(sheet.id)" class="sheet" *ngFor="let sheet of this.sheets">
-                <div class="title">
-                    <p>{{sheet.songTitle}}</p>
+            <div  class="sheet" *ngFor="let sheet of this.sheets">
+                <div (click)="viewSongSheetDetails(sheet.id)">
+                    <div class="title">
+                        <p>{{sheet.songTitle}}</p>
+                    </div>
+                    <div class="singer">
+                        <p>By: {{sheet.singer}}</p>
+                    </div>
                 </div>
-                <div class="singer">
-                    <p>By: {{sheet.singer}}</p>
+                
+                <div class="action">
+                    <i (click)="editSongSheet(sheet.id)" id="edit" class='bx bx-edit-alt' ></i>
+                    <i (click)="deleteSongSheet(sheet.id)" id="delete" class='bx bx-trash'></i>
                 </div>
             </div>
         </div>

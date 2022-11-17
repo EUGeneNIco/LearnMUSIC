@@ -75,12 +75,22 @@ body, html {
     }
 }
 
+@media (max-width:750px) {
+    .body {
+       /* border: solid rgb(0, 255, 64) 5px; */
+       padding: 3rem 2rem;
+    }
+
+}
+
 .body .sheet {
     /* border: solid black 1px; */
     width: 25vh;
     height: 20vh;
 
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #d9d9d9;
     color: black;
     border-radius: 10px;
@@ -89,6 +99,29 @@ body, html {
     font-size: 1rem;
 
     /* border-radius: 15px; */
+}
+
+.body .sheet .action{
+    /* border: solid black 1px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.body .sheet .action i{
+    font-size: xx-large;
+    transition: 0.2s;
+}
+
+#edit:hover{
+    color: #60d14c;
+    font-size: 4rem;
+}
+
+#delete:hover{
+    color: #e30a0a;
+    font-size: 4rem;
 }
 
 .body .sheet:hover {
@@ -101,16 +134,17 @@ body, html {
     height: 23vh;
 }
 
-.body .sheet .title {
+.body .sheet div .title {
     /* border: solid black 1px; */
     font-size: 1.3rem;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.1rem;
 }
 
-.body .sheet .singer {
+.body .sheet div .singer {
     /* border: solid black 1px; */
-    padding: 0.2rem;
+    padding: 0.1rem;
+    text-align: center;
 }
 
 .footer {

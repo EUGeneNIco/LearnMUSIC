@@ -38,11 +38,17 @@ export class ChordsStorageComponent implements OnInit {
     private fb: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,)
-    { }
+    {
+      
+     }
   
   ngOnInit(): void {
-    this.getAllCards();
+    this.reloadData();
+    
+  }
 
+  reloadData(){
+    this.getAllCards();
   }
 
   getAllCards(){
@@ -160,5 +166,25 @@ export class ChordsStorageComponent implements OnInit {
 
   addSongSheet(){
     this.router.navigateByUrl('/chords/add');
+  }
+
+  deleteSongSheet(sheetId: any){
+    console.log(sheetId);
+
+    this.songSheetService.delete(sheetId).subscribe({
+      next: (data: any) => {
+        // console.log(data);
+        this.toastr.success("Song sheet deleted.")
+        setTimeout(() => this.reloadData(), 500);
+      },
+      error: (e) => {
+        this.toastr.error(e.error);
+      }
+    })
+  }
+
+  editSongSheet(sheetId: any){
+    console.log(sheetId);
+
   }
 }
