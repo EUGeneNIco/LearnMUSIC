@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
+import { AuthService } from '../service/auth.service';
 import { SongSheetService } from '../service/song-sheet.service';
+import { ConfirmationMessages } from '../_enums/confirmation-messages';
+import { NotificationMessages } from '../_enums/notification-messages';
 
 @Component({
   selector: 'app-chords-storage-detail',
@@ -18,7 +21,10 @@ export class ChordsStorageDetailComponent implements OnInit {
   sheets: any[] = [];
   editMode: boolean = false;
   viewMode: boolean = false;
+  isViewMode: boolean = false;
+  addMode: boolean = false;
   songSheetId: any;
+  formMode: any;
 
   get songTitle() { return this.addForm.get('songTitle'); }
   get singer() { return this.addForm.get('singer'); }
@@ -26,6 +32,7 @@ export class ChordsStorageDetailComponent implements OnInit {
   get contents() { return this.addForm.get('contents'); }
 
   constructor(
+    private authService: AuthService,
     private toastr: ToastrService,
     public songSheetService: SongSheetService,
     private fb: FormBuilder,
@@ -36,26 +43,39 @@ export class ChordsStorageDetailComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.initializeAll();
+    this.checkViewMode();
+    this.getIdFromRoute();
 
-    this.route.paramMap.subscribe({
-      next: (params) => {
-        const id = params.get('id');
-        this.songSheetId = id;
+    if (this.songSheetId > 0) {
+      this.loadRecordData();
 
-        if(id){
-          this.songSheetService.getSheetById(id).subscribe({
-            next: (data: any) => {
-              // console.log(data);
-              this.addForm.patchValue(data);
-            },
-            error: (e) => {
-              console.log(e);
-            }
-          })
-        }
+      // Enable/Disable Form
+      this.isViewMode ? this.addForm.disable() : this.addForm.enable();
+
+      this.formMode = this.isViewMode ? 'View' : 'Edit';
+      console.log("{0} Mode" , this.formMode)
+      console.log("Add Mode", this.addForm)
+    }
+    else {
+        this.formMode = 'Add';
+        this.addMode = true;
+        console.log("Add Mode", this.addForm)
+        
+    }
+  }
+
+  checkViewMode() {
+    this.isViewMode = !this.router.url.includes("detail");
+  }
+
+  loadRecordData(){
+    this.songSheetService.getSheetById(this.songSheetId).subscribe({
+      next: (data: any) => {
+        // console.log(data);
+        this.addForm.patchValue(data);
       },
       error: (e) => {
-        console.log(e);
+        this.toastr.error(e.error);
       }
     })
   }
@@ -63,69 +83,91 @@ export class ChordsStorageDetailComponent implements OnInit {
   initializeForm() {
     if(!this.addForm){
       this.addForm = this.fb.group({
-        songTitle: [''],
-        singer: [''],
-        keySignature: [''],
-        contents: ['']
+        songTitle: ['', Validators.required],
+        singer: ['', Validators.required],
+        keySignature: ['', Validators.required],
+        contents: ['', Validators.required]
     })
   }
 };
 
   initializeAll(){
-    this.onViewMode();
+
   }
 
-  onViewMode(){
-    this.addForm.disable();
-    this.editMode = false;
-  }
-
-  onEditMode(){
-    this.addForm.enable();
-    this.editMode = true;
-  }
-
-  deleteCard(songSheetId: any){
-  }
-
-  addCard(){
+  getIdFromRoute(){
+    this.route.paramMap.subscribe({
+      next: (params) => {
+        const id = params.get('id');
+        this.songSheetId = id;
+      },
+      error: (e) => {
+        this.toastr.error(e.error);
+      }
+    })
   }
 
   edit(){
-    this.onEditMode();
+    this.addForm.enable();
+    this.isViewMode = false;
   }
 
-  getCardDetail(songSheetId: any){
-  }
-
-  updateSheet(){
+  save(){
     var record = this.addForm.getRawValue();
-    // console.log(record);
-    this.songSheetService.updateSheet({
-      songTitle: record.songTitle,
-      singer: record.singer,
-      keySignature: record.keySignature,
-      contents: record.contents,
-      id: this.songSheetId,
-    }).subscribe({
-      next:(data: any) => {
-        // console.log(data);
-        this.toastr.success("Song sheet updated.")
-        setTimeout(() => this.backToListPage(), 500);
-        ;
-      },
-      error:(e) => {
-        this.toastr.error(e.error);
-        // console.log(e);
+    if(this.addForm.valid === true){
+
+      console.log("Valid!: ", this.addForm.valid)
+      if(this.songSheetId > 0){
+        // console.log(record);
+        this.songSheetService.updateSheet({
+          songTitle: record.songTitle,
+          singer: record.singer,
+          keySignature: record.keySignature,
+          contents: record.contents,
+          id: this.songSheetId,
+        }).subscribe({
+          next:(data: any) => {
+            // console.log(data);
+            this.toastr.success(NotificationMessages.SaveSuccessful.Message)
+            setTimeout(() => this.backToListPage(), 500);
+            ;
+          },
+          error:(e) => {
+            this.toastr.error(e.error);
+            // console.log(e);
+          }
+        })
       }
-    })
+      else{
+        this.songSheetService.addSongSheet({
+          userId: this.authService.userID,
+          songTitle: record.songTitle,
+          singer: record.singer,
+          keySignature: record.keySignature,
+          contents: record.contents,
+        }
+          ).subscribe({
+          next: (data: any) => {
+            // console.log(data);
+            this.toastr.success(NotificationMessages.SaveSuccessful.Message);
+            setTimeout(() => this.backToListPage(), 500);
+          },
+          error: (e) => {
+            this.toastr.error(e.error);
+          }
+        })
+      }
+    }
+    else {
+      this.toastr.warning("Some fields are not finished.");
+    }
   }
 
   deleteSongSheet(){
     this.songSheetService.delete(this.songSheetId).subscribe({
       next: (data: any) => {
         // console.log(data);
-        this.toastr.success("Song sheet deleted.")
+        this.toastr.success(NotificationMessages.DeleteSuccessful.Message)
         setTimeout(() => this.backToListPage(), 500);
       },
       error: (e) => {

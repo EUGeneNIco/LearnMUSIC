@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../service/auth.service';
 import { SongSheetService } from '../service/song-sheet.service';
+import { NotificationMessages } from '../_enums/notification-messages';
 
 @Component({
   selector: 'app-chords-storage',
@@ -19,10 +20,8 @@ export class ChordsStorageComponent implements OnInit {
   hasPrevPage: boolean = false;
   sheets: any[] = [];
   allSheets: any[] = [];
-  sheetsOnPage: any[] = [];
   editMode: boolean = false;
   viewMode: boolean = false;
-  id: number = 0;
   videos: any[] = [];
 
   //Pagin
@@ -44,10 +43,19 @@ export class ChordsStorageComponent implements OnInit {
   
   ngOnInit(): void {
     this.reloadData();
-    
   }
 
   reloadData(){
+    this.pageLimit = 6;
+    this.lastSheetNo = 0;
+    this.lastLastSheetNo = 0;
+    this.sheetsLeft = 0;
+    this.needMorePage = false;
+    this.hasPrevPage = false;
+    this.sheets = [];
+    this.allSheets = [];
+    this.editMode = false;
+    this.viewMode = false;
     this.getAllCards();
   }
 
@@ -55,7 +63,7 @@ export class ChordsStorageComponent implements OnInit {
     this.songSheetService.getAllSheets(this.auth.userID).subscribe({
       next: (data: any) => {
         //console.log(data);
-        if(data.length > 7){
+        if(data.length > 6){
           this.needMorePage = true;
           this.allSheets = data;
           this.showFirstPage();
@@ -161,11 +169,11 @@ export class ChordsStorageComponent implements OnInit {
   }
 
   viewSongSheetDetails(sheetId: any){
-    this.router.navigateByUrl('chords/edit/' + sheetId);
+    this.router.navigateByUrl('chords/' + sheetId);
   }
 
   addSongSheet(){
-    this.router.navigateByUrl('/chords/add');
+    this.router.navigateByUrl('/chords/detail');
   }
 
   deleteSongSheet(sheetId: any){
@@ -174,7 +182,7 @@ export class ChordsStorageComponent implements OnInit {
     this.songSheetService.delete(sheetId).subscribe({
       next: (data: any) => {
         // console.log(data);
-        this.toastr.success("Song sheet deleted.")
+        this.toastr.success(NotificationMessages.DeleteSuccessful.Message)
         setTimeout(() => this.reloadData(), 500);
       },
       error: (e) => {
@@ -184,7 +192,7 @@ export class ChordsStorageComponent implements OnInit {
   }
 
   editSongSheet(sheetId: any){
-    console.log(sheetId);
+    this.router.navigateByUrl('chords/detail/' + sheetId);
 
   }
 }

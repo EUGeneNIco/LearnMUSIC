@@ -44,7 +44,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    if(this.registerForm.valid){const record = this.registerForm.getRawValue();
+    if(this.registerForm.valid){
+      const record = this.registerForm.getRawValue();
       this.auth.register(record).subscribe({
         next: (data: any) =>{
           this.toastr.success("Registration is successfull");

@@ -17,8 +17,6 @@ using LearnMUSIC.Core.Application.SongSheets.Commands.DeleteSongSheet;
 
 namespace LearnMUSIC.Interface.WebAPI.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
   [AllowAnonymous]
   public class SongSheetsController : ApiControllerBase
   {
@@ -31,6 +29,7 @@ namespace LearnMUSIC.Interface.WebAPI.Controllers
     {
       try
       {;
+        //command.UserId = this.GetUserIdFromClaims();
 
         var data = await this.Mediator.Send(command);
 

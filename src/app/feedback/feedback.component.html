@@ -1,0 +1,31 @@
+<app-nav></app-nav>
+<div class="container">
+    <div class="cont">
+        <div class="header">
+            <p>Send feedback to LearnMusic</p>
+        </div>
+        <form action="" [formGroup]="formModel" (ngSubmit)="submit()">
+            <div class="body">
+                <p>Describe your issue or suggestion</p>
+                <div class="text-input">
+                    <input placeholder="Subject" formControlName="subject" class="form-control" type="text" name="" id="">
+                </div>
+                <div  class="text input-group input-text-area mb-0">
+                    <textarea formControlName="content" class="form-control" name="" id="" cols="30" rows="10" placeholder="Tell us how we can improve our product"></textarea>
+                </div>
+                <p>Please dont include any sensitive information</p>
+            </div>
+            <div class="footer">
+                <div class="legal">
+                    <p>Some account and system information may be sent to Google. 
+                        We will use it to fix problems and improve our services, subject to our Privacy Policy and 
+                        Terms of Service. We may email you for more information or updates. Go to Legal Help to ask 
+                        for content changes for legal reasons.</p>
+                </div>
+                <div class="button">
+                    <button type="submit"><span>Send</span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

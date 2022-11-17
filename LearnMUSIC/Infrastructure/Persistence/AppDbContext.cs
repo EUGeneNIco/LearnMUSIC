@@ -6,6 +6,8 @@ namespace LearnMUSIC.Infrastructure.Persistence
 {
   public class AppDbContext : DbContext, IAppDbContext
   {
+    public DbSet<Feedback> Feedbacks { get; set; }
+
     public DbSet<SongSheet> SongSheets { get; set; }
 
     public DbSet<User> Users { get; set; }
