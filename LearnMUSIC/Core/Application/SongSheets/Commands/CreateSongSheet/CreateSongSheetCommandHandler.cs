@@ -30,12 +30,21 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
       }
 
       var key = this.dbContext.CodeListValues
-        .SingleOrDefault(x => x.Id == request.KeySignature
-        .ConvertToLong() && x.Type == CodeListType.KeySignature);
+        .SingleOrDefault(x => x.Id == request.KeySignatureId.ConvertToLong()
+                  && x.Type == CodeListType.KeySignature);
 
       if (key is null)
       {
         throw new Exception("Key signature not found.");
+      }
+
+      var genre = this.dbContext.CodeListValues
+        .SingleOrDefault(x => x.Id == request.GenreId.ConvertToLong()
+                  && x.Type == CodeListType.Genre);
+
+      if (genre is null)
+      {
+        throw new Exception("Genre not found.");
       }
 
       var createdOn = this.dateTime.Now;
@@ -43,7 +52,8 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
       {
           SongTitle = request.SongTitle.Trim(),
           Singer = request.Singer.Trim(),
-          KeySignature = key.Name,
+          KeySignatureId = key.Id,
+          GenreId = genre.Id,
           Contents = request.Contents.Trim(),
           IsDeleted = false,
           UserId = request.UserId,

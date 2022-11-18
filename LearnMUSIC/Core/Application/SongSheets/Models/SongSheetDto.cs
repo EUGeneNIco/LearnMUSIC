@@ -12,7 +12,9 @@ namespace LearnMUSIC.Application.SongSheets.Models
 
     public string Singer { get; set; }
 
-    public string KeySignature { get; set; }
+    public long KeySignatureId { get; set; }
+
+    public long GenreId { get; set; }
 
     public string Contents { get; set; }
 

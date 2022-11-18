@@ -11,7 +11,9 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
 
     public string Singer { get; set; }
 
-    public string KeySignature { get; set; }
+    public string KeySignatureId { get; set; }
+
+    public string GenreId { get; set; }
 
     public string Contents { get; set; }
    }

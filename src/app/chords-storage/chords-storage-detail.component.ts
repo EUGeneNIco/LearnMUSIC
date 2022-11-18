@@ -48,6 +48,8 @@ export class ChordsStorageDetailComponent implements OnInit {
     this.initializeAll();
     this.checkViewMode();
     this.getIdFromRoute();
+    
+    this.getKeys();
 
     if (this.songSheetId > 0) {
       this.loadRecordData();
@@ -65,7 +67,6 @@ export class ChordsStorageDetailComponent implements OnInit {
         console.log("Add Mode", this.addForm)
     }
 
-    this.getKeys();
   }
 
   checkViewMode() {
@@ -75,7 +76,7 @@ export class ChordsStorageDetailComponent implements OnInit {
   loadRecordData(){
     this.songSheetService.getSheetById(this.songSheetId).subscribe({
       next: (data: any) => {
-        // console.log(data);
+        console.log("Data: ", data);
         this.addForm.patchValue(data);
       },
       error: (e) => {
@@ -160,7 +161,7 @@ export class ChordsStorageDetailComponent implements OnInit {
           userId: this.authService.userID,
           songTitle: record.songTitle,
           singer: record.singer,
-          keySignature: record.keySignature,
+          keySignatureId: record.keySignature,
           contents: record.contents,
         }
           ).subscribe({

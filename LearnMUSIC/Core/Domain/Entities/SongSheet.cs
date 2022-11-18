@@ -1,4 +1,5 @@
 using LearnMUSIC.Core.Domain.Entities.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LearnMUSIC.Core.Domain.Entities
 {
@@ -8,7 +9,13 @@ namespace LearnMUSIC.Core.Domain.Entities
 
     public string Singer { get; set; }
 
-    public string KeySignature { get; set; }
+    //[ForeignKey("KeySignature")]
+    public long KeySignatureId { get; set; }
+    public virtual CodeListValue KeySignature { get; set; }
+
+    //[ForeignKey("Genre")]
+    public long GenreId { get; set; }
+    public virtual CodeListValue Genre { get; set; }
 
     public string Contents { get; set; }
 
