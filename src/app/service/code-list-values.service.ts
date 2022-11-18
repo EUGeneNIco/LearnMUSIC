@@ -14,4 +14,8 @@ export class CodeListValuesService extends BaseService {
   getGenres(){
     return this.http.get(this.API_URL + '/api/CodeListValues/getGenres');
   }
+
+  getKeys(){
+    return this.http.get(this.API_URL + '/api/CodeListValues/getKeys');
+  }
 }

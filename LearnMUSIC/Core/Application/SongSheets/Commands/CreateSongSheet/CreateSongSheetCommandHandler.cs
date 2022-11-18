@@ -1,4 +1,6 @@
+using LearnMusic.Core.Domain.Enumerations;
 using LearnMUSIC.Common.Common;
+using LearnMUSIC.Common.Helper;
 using LearnMUSIC.Core.Application._Interfaces;
 using LearnMUSIC.Core.Domain.Entities;
 using MediatR;
@@ -27,12 +29,21 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
           throw new Exception("Song sheet with the same title and singer is existing.");
       }
 
+      var key = this.dbContext.CodeListValues
+        .SingleOrDefault(x => x.Id == request.KeySignature
+        .ConvertToLong() && x.Type == CodeListType.KeySignature);
+
+      if (key is null)
+      {
+        throw new Exception("Key signature not found.");
+      }
+
       var createdOn = this.dateTime.Now;
       var entity = new SongSheet
       {
           SongTitle = request.SongTitle.Trim(),
           Singer = request.Singer.Trim(),
-          KeySignature = request.KeySignature.Trim(),
+          KeySignature = key.Name,
           Contents = request.Contents.Trim(),
           IsDeleted = false,
           UserId = request.UserId,

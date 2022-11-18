@@ -1,3 +1,4 @@
+using LearnMusic.Core.Domain.Enumerations;
 using LearnMUSIC.Common.Common;
 using LearnMUSIC.Common.Helper;
 using LearnMUSIC.Core.Application._Exceptions;
@@ -26,7 +27,7 @@ namespace LearnMUSIC.Core.Application.Users.Command
         throw new DuplicateException("Username already exists.");
       }
 
-      //Add
+      //Add User
       var createdOn = this.dateTime.Now;
 
       var user = new User
@@ -45,22 +46,17 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
       await this.dbContext.SaveChangesAsync(cancellationToken);
 
-      var modules = new List<Module> {
-        new Module { Name = "Home", Category = "Usual"},
-        new Module { Name = "SongSheet", Category = "Usual"},
-        //new Module { Name = "Admin", Category = "Management"},
-      };
+      var modules = this.dbContext.Modules
+        .Where(x => x.Category == ModuleCategory.Usual)
+        .ToList();
 
+      //Add User Module Access
       foreach(var module in modules)
       {
         var moduleAccess = new UserModuleAccess
         {
           UserId = user.Id,
-          Module = new Module
-          {
-            Name = module.Name,
-            Category = module.Category,
-          },
+          ModuleId = module.Id,
           HasAccess = true,
         };
 

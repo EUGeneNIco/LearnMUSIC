@@ -26,7 +26,7 @@ export class ChordsStorageDetailComponent implements OnInit {
   songSheetId: any;
   formMode: any;
 
-  genresOptions: any[] = [];
+  keysOptions: any[] = [];
 
   get songTitle() { return this.addForm.get('songTitle'); }
   get singer() { return this.addForm.get('singer'); }
@@ -65,7 +65,7 @@ export class ChordsStorageDetailComponent implements OnInit {
         console.log("Add Mode", this.addForm)
     }
 
-    this.getGenres();
+    this.getKeys();
   }
 
   checkViewMode() {
@@ -84,11 +84,11 @@ export class ChordsStorageDetailComponent implements OnInit {
     })
   }
 
-  getGenres(){
-    this.codeListValueService.getGenres().subscribe({
+  getKeys(){
+    this.codeListValueService.getKeys().subscribe({
       next: (data: any) => {
         console.log(data);
-        this.genresOptions = data;
+        this.keysOptions = data;
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -133,47 +133,47 @@ export class ChordsStorageDetailComponent implements OnInit {
     console.log(record);
     if(this.addForm.valid === true){
 
-      // console.log("Valid!: ", this.addForm.valid)
-      // if(this.songSheetId > 0){
-      //   // console.log(record);
-      //   this.songSheetService.updateSheet({
-      //     songTitle: record.songTitle,
-      //     singer: record.singer,
-      //     keySignature: record.keySignature,
-      //     contents: record.contents,
-      //     id: this.songSheetId,
-      //   }).subscribe({
-      //     next:(data: any) => {
-      //       // console.log(data);
-      //       this.toastr.success(NotificationMessages.SaveSuccessful.Message)
-      //       setTimeout(() => this.backToListPage(), 500);
-      //       ;
-      //     },
-      //     error:(e) => {
-      //       this.toastr.error(e.error);
-      //       // console.log(e);
-      //     }
-      //   })
-      // }
-      // else{
-      //   this.songSheetService.addSongSheet({
-      //     userId: this.authService.userID,
-      //     songTitle: record.songTitle,
-      //     singer: record.singer,
-      //     keySignature: record.keySignature,
-      //     contents: record.contents,
-      //   }
-      //     ).subscribe({
-      //     next: (data: any) => {
-      //       // console.log(data);
-      //       this.toastr.success(NotificationMessages.SaveSuccessful.Message);
-      //       setTimeout(() => this.backToListPage(), 500);
-      //     },
-      //     error: (e) => {
-      //       this.toastr.error(e.error);
-      //     }
-      //   })
-      // }
+      console.log("Valid!: ", this.addForm.valid)
+      if(this.songSheetId > 0){
+        // console.log(record);
+        this.songSheetService.updateSheet({
+          songTitle: record.songTitle,
+          singer: record.singer,
+          keySignatureId: record.keySignature,
+          contents: record.contents,
+          id: this.songSheetId,
+        }).subscribe({
+          next:(data: any) => {
+            // console.log(data);
+            this.toastr.success(NotificationMessages.SaveSuccessful.Message)
+            setTimeout(() => this.backToListPage(), 500);
+            ;
+          },
+          error:(e) => {
+            this.toastr.error(e.error);
+            // console.log(e);
+          }
+        })
+      }
+      else{
+        this.songSheetService.addSongSheet({
+          userId: this.authService.userID,
+          songTitle: record.songTitle,
+          singer: record.singer,
+          keySignature: record.keySignature,
+          contents: record.contents,
+        }
+          ).subscribe({
+          next: (data: any) => {
+            // console.log(data);
+            this.toastr.success(NotificationMessages.SaveSuccessful.Message);
+            setTimeout(() => this.backToListPage(), 500);
+          },
+          error: (e) => {
+            this.toastr.error(e.error);
+          }
+        })
+      }
     }
     else {
       this.toastr.warning("Some fields are not finished.");
