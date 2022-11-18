@@ -6,6 +6,8 @@ namespace LearnMUSIC.Core.Application._Interfaces
 {
   public interface IAppDbContext
   {
+    DbSet<CodeListValue> CodeListValues { get; set; }
+
     DbSet<Feedback> Feedbacks { get; set; }
 
     DbSet<SongSheet> SongSheets { get; set; }

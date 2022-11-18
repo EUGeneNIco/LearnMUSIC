@@ -4,6 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { AuthService } from '../service/auth.service';
+import { CodeListValuesService } from '../service/code-list-values.service';
 import { SongSheetService } from '../service/song-sheet.service';
 import { ConfirmationMessages } from '../_enums/confirmation-messages';
 import { NotificationMessages } from '../_enums/notification-messages';
@@ -15,7 +16,6 @@ import { NotificationMessages } from '../_enums/notification-messages';
 })
 export class ChordsStorageDetailComponent implements OnInit {
 
-  
   addForm!: FormGroup;
   
   sheets: any[] = [];
@@ -26,12 +26,15 @@ export class ChordsStorageDetailComponent implements OnInit {
   songSheetId: any;
   formMode: any;
 
+  genresOptions: any[] = [];
+
   get songTitle() { return this.addForm.get('songTitle'); }
   get singer() { return this.addForm.get('singer'); }
   get keySignature() { return this.addForm.get('keySignature'); }
   get contents() { return this.addForm.get('contents'); }
 
   constructor(
+    private codeListValueService: CodeListValuesService,
     private authService: AuthService,
     private toastr: ToastrService,
     public songSheetService: SongSheetService,
@@ -60,8 +63,9 @@ export class ChordsStorageDetailComponent implements OnInit {
         this.formMode = 'Add';
         this.addMode = true;
         console.log("Add Mode", this.addForm)
-        
     }
+
+    this.getGenres();
   }
 
   checkViewMode() {
@@ -73,6 +77,18 @@ export class ChordsStorageDetailComponent implements OnInit {
       next: (data: any) => {
         // console.log(data);
         this.addForm.patchValue(data);
+      },
+      error: (e) => {
+        this.toastr.error(e.error);
+      }
+    })
+  }
+
+  getGenres(){
+    this.codeListValueService.getGenres().subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.genresOptions = data;
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -114,49 +130,50 @@ export class ChordsStorageDetailComponent implements OnInit {
 
   save(){
     var record = this.addForm.getRawValue();
+    console.log(record);
     if(this.addForm.valid === true){
 
-      console.log("Valid!: ", this.addForm.valid)
-      if(this.songSheetId > 0){
-        // console.log(record);
-        this.songSheetService.updateSheet({
-          songTitle: record.songTitle,
-          singer: record.singer,
-          keySignature: record.keySignature,
-          contents: record.contents,
-          id: this.songSheetId,
-        }).subscribe({
-          next:(data: any) => {
-            // console.log(data);
-            this.toastr.success(NotificationMessages.SaveSuccessful.Message)
-            setTimeout(() => this.backToListPage(), 500);
-            ;
-          },
-          error:(e) => {
-            this.toastr.error(e.error);
-            // console.log(e);
-          }
-        })
-      }
-      else{
-        this.songSheetService.addSongSheet({
-          userId: this.authService.userID,
-          songTitle: record.songTitle,
-          singer: record.singer,
-          keySignature: record.keySignature,
-          contents: record.contents,
-        }
-          ).subscribe({
-          next: (data: any) => {
-            // console.log(data);
-            this.toastr.success(NotificationMessages.SaveSuccessful.Message);
-            setTimeout(() => this.backToListPage(), 500);
-          },
-          error: (e) => {
-            this.toastr.error(e.error);
-          }
-        })
-      }
+      // console.log("Valid!: ", this.addForm.valid)
+      // if(this.songSheetId > 0){
+      //   // console.log(record);
+      //   this.songSheetService.updateSheet({
+      //     songTitle: record.songTitle,
+      //     singer: record.singer,
+      //     keySignature: record.keySignature,
+      //     contents: record.contents,
+      //     id: this.songSheetId,
+      //   }).subscribe({
+      //     next:(data: any) => {
+      //       // console.log(data);
+      //       this.toastr.success(NotificationMessages.SaveSuccessful.Message)
+      //       setTimeout(() => this.backToListPage(), 500);
+      //       ;
+      //     },
+      //     error:(e) => {
+      //       this.toastr.error(e.error);
+      //       // console.log(e);
+      //     }
+      //   })
+      // }
+      // else{
+      //   this.songSheetService.addSongSheet({
+      //     userId: this.authService.userID,
+      //     songTitle: record.songTitle,
+      //     singer: record.singer,
+      //     keySignature: record.keySignature,
+      //     contents: record.contents,
+      //   }
+      //     ).subscribe({
+      //     next: (data: any) => {
+      //       // console.log(data);
+      //       this.toastr.success(NotificationMessages.SaveSuccessful.Message);
+      //       setTimeout(() => this.backToListPage(), 500);
+      //     },
+      //     error: (e) => {
+      //       this.toastr.error(e.error);
+      //     }
+      //   })
+      // }
     }
     else {
       this.toastr.warning("Some fields are not finished.");

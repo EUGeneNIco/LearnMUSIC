@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using GYMAPI.Interface.HostedService;
 using AFPMBAI.CLAIMS.WebAPI.Auth;
 using LearnMUSIC.Interface.WebAPI.Auth;
 using LearnMUSIC.Infrastructure;
 using LearnMUSIC.Infrastructure.Persistence;
 using LearnMUSIC.Common.Common;
+using LearnMusic.Interface.WebApi.HostedService;
 
 namespace LearnMUSIC
 {
@@ -48,7 +48,7 @@ namespace LearnMUSIC
           options.UseSqlServer(Configuration.GetConnectionString("LearnMUSICDbConnectionString"))
                   .UseLazyLoadingProxies());
 
-      //services.AddHostedService<MembershipStatusUpdateService>();
+      services.AddHostedService<DbUpdateService>();
 
       // Configure DI
       this.ConfigureDI(services);

@@ -1,13 +1,14 @@
 
+using LearnMUSIC.Core.Application.DbUpdaters.Command.RunDbUpdate;
 using MediatR;
 
-namespace GYMAPI.Interface.HostedService
+namespace LearnMusic.Interface.WebApi.HostedService
 {
-  public class MembershipStatusUpdateService : BackgroundService, IDisposable
+  public class DbUpdateService : BackgroundService, IDisposable
   {
     private readonly IServiceScopeFactory serviceScopeFactory;
 
-    public MembershipStatusUpdateService(IServiceScopeFactory serviceScopeFactory)
+    public DbUpdateService(IServiceScopeFactory serviceScopeFactory)
     {
       this.serviceScopeFactory = serviceScopeFactory;
     }
@@ -29,7 +30,7 @@ namespace GYMAPI.Interface.HostedService
         using var scope = this.serviceScopeFactory.CreateScope();
         var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-        Console.WriteLine("HEY!");
+        await mediator.Send(new RunDbUpdateCommand());
 
       }
       catch(Exception ex)

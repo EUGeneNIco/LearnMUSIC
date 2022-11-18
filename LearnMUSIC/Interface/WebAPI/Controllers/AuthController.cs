@@ -37,7 +37,7 @@ namespace LearnMUSIC.Interface.WebAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return StatusCode(StatusCodes.Status500InternalServerError, ex);
       }
     }
 
@@ -76,7 +76,7 @@ namespace LearnMUSIC.Interface.WebAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return StatusCode(StatusCodes.Status500InternalServerError, ex);
       }
     }
   }

@@ -22,7 +22,7 @@ namespace LearnMUSIC.Core.Application.Users.Queries.AuthenticateUser
 
     public async Task<UserClaimsDto> Handle(AuthenticateUserQuery request, CancellationToken cancellationToken)
     {
-      var user = await this.dbContext.Users.FirstOrDefaultAsync(x => x.Username == request.Username.Trim());
+      var user = await this.dbContext.Users.FirstOrDefaultAsync(x => x.UserName == request.Username.Trim());
           
       if(user is null)
       {

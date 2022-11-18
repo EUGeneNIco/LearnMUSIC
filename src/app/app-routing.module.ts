@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'chords/detail/:id', canActivate: [AuthGuard],component: ChordsStorageDetailComponent, data: { module: 'SongSheet'}
   },
   {
-    path: 'feedback', canActivate: [AuthGuard],component: FeedbackComponent, data: { module: 'SongSheet'}
+    path: 'feedback', canActivate: [AuthGuard],component: FeedbackComponent, data: { module: 'Feedback'}
   },
   {
     path: 'register',component: RegisterComponent,

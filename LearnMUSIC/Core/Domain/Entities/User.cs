@@ -4,7 +4,7 @@ namespace LearnMUSIC.Core.Domain.Entities
 {
   public class User : EntityBase
   {
-    public string Username { get; set; }
+    public string UserName { get; set; }
 
     public string PasswordHash { get; set; }
 
@@ -13,6 +13,8 @@ namespace LearnMUSIC.Core.Domain.Entities
     public string LastName { get; set; }
 
     public string Email { get; set; }
+
+    public bool AccountStatus { get; set; }
 
     public DateTime? LastSuccessfulLogin { get; set; }
 

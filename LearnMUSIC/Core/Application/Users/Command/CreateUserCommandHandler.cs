@@ -21,7 +21,7 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
     public async Task<long> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-      if(this.dbContext.Users.Any(x => x.Username == request.Username.Trim() && !x.IsDeleted))
+      if(this.dbContext.Users.Any(x => x.UserName == request.Username.Trim() && !x.IsDeleted))
       {
         throw new DuplicateException("Username already exists.");
       }
@@ -31,7 +31,7 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
       var user = new User
       {
-        Username = request.Username,
+        UserName = request.Username,
         PasswordHash = PasswordHelper.Hash(request.Password),
 
         FirstName = request.FirstName.Trim(),
