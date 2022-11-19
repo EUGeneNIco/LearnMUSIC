@@ -1,5 +1,6 @@
 .container {
     /* border: solid black 3px; */
+    margin-top: 60px;
     height: 100%;
     width: 100%;
     padding: 1rem;
@@ -10,13 +11,13 @@
 }
 
 .cont {
-    /* border: solid black 1px; */
+    /* border: solid rgb(185, 15, 15) 1px; */
     padding: 0.5rem;
     margin: 0;
 }
 
 .cont .header {
-    /* border: solid black 1px; */
+    /* border: solid rgb(78, 174, 5) 1px; */
     height: 10vh;
     text-align: center;
     font-size: 3rem;
@@ -141,11 +142,11 @@
 .footer div button span {
     margin: 0 2rem;
 }
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
     .container {
         /* border: solid rgb(162, 22, 127) 3px; */
-        height: 760px;
+        height: 745px;
         width: 100%;
         padding: 0.3rem 0rem;
     }
@@ -174,7 +175,7 @@
         margin-bottom: 0.1rem;
         /* border: solid rgb(255, 0, 230) 3px; */
         padding: 0.4rem;
-        height: 78%;
+        height: 80%;
     }
 
     .body .details {
@@ -186,13 +187,21 @@
     }
 
     .body .content{
+        /* border: solid rgb(199, 8, 8) 1px; */
         padding: 0.1rem;
+        height: 56%;
     }
 
     .body  .content  .input-text-area{
         /* border: solid black 1px; */
         padding: 0.5rem;
-        height: 46vh;
+        height: 100%;
+    }
+
+    .body  .content  .input-text-area textarea{
+        /* border: solid black 1px; */
+        padding: 0.5rem;
+        height: 100%;
     }
 
     .body .input-text{

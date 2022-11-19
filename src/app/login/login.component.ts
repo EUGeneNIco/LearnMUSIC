@@ -38,10 +38,8 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.loginForm.valid){
-      this.toastr.success("Pumasok 1.")
       const record = this.loginForm.getRawValue();
       console.log(record);
-      this.toastr.success("Pumasok 2.")
       
       this.authService.login({
         username: record.userName,
