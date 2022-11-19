@@ -27,11 +27,13 @@ export class ChordsStorageDetailComponent implements OnInit {
   formMode: any;
 
   keysOptions: any[] = [];
+  genreOptions: any[] = [];
 
   get songTitle() { return this.addForm.get('songTitle'); }
   get singer() { return this.addForm.get('singer'); }
   get keySignature() { return this.addForm.get('keySignature'); }
   get contents() { return this.addForm.get('contents'); }
+  get genre() { return this.addForm.get('genre'); }
 
   constructor(
     private codeListValueService: CodeListValuesService,
@@ -50,6 +52,7 @@ export class ChordsStorageDetailComponent implements OnInit {
     this.getIdFromRoute();
     
     this.getKeys();
+    this.getGenres();
 
     if (this.songSheetId > 0) {
       this.loadRecordData();
@@ -78,6 +81,9 @@ export class ChordsStorageDetailComponent implements OnInit {
       next: (data: any) => {
         console.log("Data: ", data);
         this.addForm.patchValue(data);
+
+        this.genre?.setValue(this.genreOptions.find(x => { x.id == data.genreId } ));
+        console.log(this.genreOptions)
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -97,13 +103,26 @@ export class ChordsStorageDetailComponent implements OnInit {
     })
   }
 
+  getGenres(){
+    this.codeListValueService.getGenres().subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.genreOptions = data;
+      },
+      error: (e) => {
+        this.toastr.error(e.error);
+      }
+    })
+  }
+
   initializeForm() {
     if(!this.addForm){
       this.addForm = this.fb.group({
         songTitle: ['', Validators.required],
         singer: ['', Validators.required],
         keySignature: ['', Validators.required],
-        contents: ['', Validators.required]
+        contents: ['', Validators.required],
+        genre: ['', Validators.required],
     })
   }
 };
@@ -141,6 +160,7 @@ export class ChordsStorageDetailComponent implements OnInit {
           songTitle: record.songTitle,
           singer: record.singer,
           keySignatureId: record.keySignature,
+          genreId: record.genre,
           contents: record.contents,
           id: this.songSheetId,
         }).subscribe({
@@ -162,6 +182,7 @@ export class ChordsStorageDetailComponent implements OnInit {
           songTitle: record.songTitle,
           singer: record.singer,
           keySignatureId: record.keySignature,
+          genreId: record.genre,
           contents: record.contents,
         }
           ).subscribe({
