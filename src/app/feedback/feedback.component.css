@@ -5,6 +5,7 @@ body, html {
 
 .container {
     /* border: solid black 3px; */
+    margin-top: 60px;
     height: 100%;
     width: 100%;
     min-height: 50vh;
@@ -75,16 +76,40 @@ body, html {
     padding: 0.5rem;
 }
 
+.cont .footer .button {
+    /* border: solid black 3px; */
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+}
+
 .cont .footer .button button{
     padding: 0.5em;
     height: 3rem;
     width: 15rem;
-    background-color: #0e9637;
     font-size: 1rem;
     color: white;
     border-radius: 5px;
     transition: 0.5s;
     border: 0;
+}
+
+.cont .footer .button #left {
+    background-color: #0e9637;
+}
+
+.cont .footer .button #left:hover{
+    background-color: #31864b;
+    cursor: pointer;
+}
+
+.cont .footer .button #right {
+    background-color: #15407d;
+}
+
+.cont .footer .button #right:hover {
+    background-color: blue;
 }
 
 .cont .footer .button button:hover{

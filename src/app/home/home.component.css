@@ -3,9 +3,13 @@
     font-family: 'Varela Round', sans-serif !important;
 }
 
-/* .container {
-    margin-top: 80px;
-} */
+.container {
+    /* border: solid rgb(0, 0, 0) 3px; */
+    margin-top: 60px;
+}
+.row {
+    padding: 2rem;
+}
 /* btn-theme {
     color: whitesmoke;
     background-color: #3500D3;

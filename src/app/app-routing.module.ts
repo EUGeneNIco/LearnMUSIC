@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
-    path: '', canActivate: [AuthGuard],component: HomeComponent, data: { module: 'Home'}
+    path: '',component: HomeComponent
   },
   {
     path: 'chords', canActivate: [AuthGuard],component: ChordsStorageComponent, data: { module: 'SongSheet'}

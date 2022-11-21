@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.checkIfSignedIn();
   }
 
   signOut() {
@@ -28,6 +28,10 @@ export class NavComponent implements OnInit {
     this.router.navigateByUrl('login');
     this.loggedOut = true;
     this.toastr.success("Logged out.");
+  }
+
+  checkIfSignedIn(){
+    this.authService.authToken != null ? this.loggedOut = true : this.loggedOut = false;
   }
 
 }
