@@ -8,6 +8,7 @@ import { CodeListValuesService } from '../service/code-list-values.service';
 import { SongSheetService } from '../service/song-sheet.service';
 import { ConfirmationMessages } from '../_enums/confirmation-messages';
 import { NotificationMessages } from '../_enums/notification-messages';
+import { SelectItem } from '../_helpers/selectItem';
 
 @Component({
   selector: 'app-chords-storage-detail',
@@ -26,8 +27,8 @@ export class ChordsStorageDetailComponent implements OnInit {
   songSheetId: any;
   formMode: any;
 
-  keysOptions: any[] = [];
-  genreOptions: any[] = [];
+  keysOptions: SelectItem[] = [];
+  genreOptions: SelectItem[] = [];
 
   get songTitle() { return this.addForm.get('songTitle'); }
   get singer() { return this.addForm.get('singer'); }
@@ -54,6 +55,10 @@ export class ChordsStorageDetailComponent implements OnInit {
     this.getKeys();
     this.getGenres();
 
+    setTimeout(() => this.checkWhatMode(), 500);
+  }
+
+  checkWhatMode(){
     if (this.songSheetId > 0) {
       this.loadRecordData();
 
@@ -61,15 +66,15 @@ export class ChordsStorageDetailComponent implements OnInit {
       this.isViewMode ? this.addForm.disable() : this.addForm.enable();
 
       this.formMode = this.isViewMode ? 'View' : 'Edit';
-      console.log("{0} Mode" , this.formMode)
-      console.log("Add Mode", this.addForm)
+      console.log("Mode" , this.formMode)
+      console.log("View Mode" , this.isViewMode)
+      console.log("Add Mode", this.addMode)
     }
     else {
         this.formMode = 'Add';
         this.addMode = true;
         console.log("Add Mode", this.addForm)
     }
-
   }
 
   checkViewMode() {
@@ -82,8 +87,11 @@ export class ChordsStorageDetailComponent implements OnInit {
         console.log("Data: ", data);
         this.addForm.patchValue(data);
 
-        this.genre?.setValue(this.genreOptions.find(x => { x.id == data.genreId } ));
-        console.log(this.genreOptions)
+        this.genre?.setValue(this.genreOptions.find(x => { return x.value == data.genreId } ));
+        console.log("Genre Value: ", this.genre?.value);
+
+        console.log("AddForm:", this.addForm)
+        console.log("AddForm Raw Value:", this.addForm.getRawValue())
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -94,8 +102,12 @@ export class ChordsStorageDetailComponent implements OnInit {
   getKeys(){
     this.codeListValueService.getKeys().subscribe({
       next: (data: any) => {
-        console.log(data);
-        this.keysOptions = data;
+        console.log("Keys: ",data);
+        this.keysOptions = data.map((key: any) => {
+          return { label: key.name, value: key.id }
+        })
+        
+        console.log("Key Options: ",this.keysOptions);
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -106,8 +118,11 @@ export class ChordsStorageDetailComponent implements OnInit {
   getGenres(){
     this.codeListValueService.getGenres().subscribe({
       next: (data: any) => {
-        console.log(data);
-        this.genreOptions = data;
+        console.log("Genres: ",data);
+        this.genreOptions = data.map((genre: any) => {
+          return { label: genre.name, value: genre.id };
+        })
+        console.log("Genre Options: ",this.genreOptions);
       },
       error: (e) => {
         this.toastr.error(e.error);

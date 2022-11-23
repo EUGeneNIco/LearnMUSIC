@@ -20,15 +20,16 @@
             <span class="input-group-text label-span" id="basic-addon1">Key</span>
             <!-- <input class="form-control" formControlName="keySignature" type="text" placeholder="C, C#, Gm ..." aria-label="default input example"> -->
             <select  type="number" class="form-select" id="keySignature" name="keySignature" formControlName="keySignature" >
-              <option *ngFor="let key of keysOptions" value={{key.id}}>{{key.name}}</option>
+              <option *ngFor="let key of keysOptions" value={{key.value}}>{{key.label}}</option>
           </select>
           </div>
           <div class="input-group input-text mb-0" style="width:100%">
             <span class="input-group-text label-span" id="basic-addon1">Genre</span>
             <!-- <input class="form-control" formControlName="keySignature" type="text" placeholder="C, C#, Gm ..." aria-label="default input example"> -->
             <select  type="number" class="form-select" id="genre" name="genre" formControlName="genre" >
-              <option *ngFor="let genre of genreOptions" value={{genre.id}}>{{genre.name}}</option>
+              <option *ngFor="let genre of genreOptions" value={{genre.value}}>{{genre.label}}</option>
           </select>
+          
           </div>
         </div>
         <div class="content">

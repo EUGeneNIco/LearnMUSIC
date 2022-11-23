@@ -1,6 +1,7 @@
 using LearnMusic.Core.Domain.Enumerations;
 using LearnMUSIC.Common.Common;
 using LearnMUSIC.Common.Helper;
+using LearnMUSIC.Core.Application._Exceptions;
 using LearnMUSIC.Core.Application._Interfaces;
 using LearnMUSIC.Core.Domain.Entities;
 using MediatR;
@@ -20,13 +21,18 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
 
     public async Task<long> Handle(CreateSongSheetCommand request, CancellationToken cancellationToken)
     {
-      var song = this.dbContext.SongSheets.FirstOrDefault(x => x.SongTitle.ToUpper() == request.SongTitle.ToUpper().Trim() 
-                  && x.Singer.ToUpper() == request.Singer.ToUpper().Trim()
-                  && !x.IsDeleted);
+      var user = this.dbContext.Users.Find(request.UserId);
 
-      if(song != null)
+      if(user is null)
       {
-          throw new Exception("Song sheet with the same title and singer is existing.");
+        throw new NotFoundException("User not found.");
+      }
+
+      if(this.dbContext.SongSheets.Any(x => x.SongTitle.ToUpper() == request.SongTitle.ToUpper().Trim()
+                  && x.Singer.ToUpper() == request.Singer.ToUpper().Trim()
+                  && !x.IsDeleted && x.UserId == user.Id))
+      {
+          throw new DuplicateException("Song sheet with the same title and singer is existing.");
       }
 
       var key = this.dbContext.CodeListValues
@@ -35,7 +41,7 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
 
       if (key is null)
       {
-        throw new Exception("Key signature not found.");
+        throw new NotFoundException("Key signature not found.");
       }
 
       var genre = this.dbContext.CodeListValues
@@ -44,7 +50,7 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
 
       if (genre is null)
       {
-        throw new Exception("Genre not found.");
+        throw new NotFoundException("Genre not found.");
       }
 
       var createdOn = this.dateTime.Now;
@@ -56,7 +62,7 @@ namespace LearnMUSIC.Application.SongSheets.Commands.CreateSongSheet
           GenreId = genre.Id,
           Contents = request.Contents.Trim(),
           IsDeleted = false,
-          UserId = request.UserId,
+          UserId = user.Id,
 
           CreatedOn = createdOn,
       };

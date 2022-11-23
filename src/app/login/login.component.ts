@@ -63,8 +63,8 @@ export class LoginComponent implements OnInit {
 
 					if (e.status == 0) {
 						// this.msgs.push({ severity: 'warn', detail: 'Server is not available. Please try again later.' });
-            // this.toastr.error("Server is not available. Please try again later")
-            this.toastr.error("Server is not available. Please try again later")
+            // console.log(e);
+            this.toastr.error("Server is not available. Please try again later");
 					}
 					else if (e.status == ApiCallStatusCodes.UNAUTHORIZED) {
 						// this.msgs.push({ severity: 'error', detail: err.error });

@@ -44,18 +44,26 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
       this.dbContext.Users.Add(user);
 
-      await this.dbContext.SaveChangesAsync(cancellationToken);
+      this.dbContext.SaveChanges();
 
+      await this.GrantModuleAccess(user.Id, cancellationToken);
+
+      return user.Id;
+    }
+
+    public async Task<long> GrantModuleAccess(long userId, CancellationToken cancellationToken)
+    {
       var modules = this.dbContext.Modules
         .Where(x => x.Category == ModuleCategory.Usual)
         .ToList();
 
+      var moduleAccess = new UserModuleAccess { };
       //Add User Module Access
-      foreach(var module in modules)
+      foreach (var module in modules)
       {
-        var moduleAccess = new UserModuleAccess
+        moduleAccess = new UserModuleAccess
         {
-          UserId = user.Id,
+          UserId = userId,
           ModuleId = module.Id,
           HasAccess = true,
         };
@@ -65,7 +73,7 @@ namespace LearnMUSIC.Core.Application.Users.Command
 
       await this.dbContext.SaveChangesAsync(cancellationToken);
 
-      return user.Id;
+      return moduleAccess.Id;
     }
   }
 }
