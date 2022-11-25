@@ -48,14 +48,13 @@ export class ChordsStorageDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.initializeAll();
     this.checkViewMode();
     this.getIdFromRoute();
     
     this.getKeys();
     this.getGenres();
 
-    setTimeout(() => this.checkWhatMode(), 500);
+    this.checkWhatMode()
   }
 
   checkWhatMode(){
@@ -66,14 +65,14 @@ export class ChordsStorageDetailComponent implements OnInit {
       this.isViewMode ? this.addForm.disable() : this.addForm.enable();
 
       this.formMode = this.isViewMode ? 'View' : 'Edit';
-      console.log("Mode" , this.formMode)
-      console.log("View Mode" , this.isViewMode)
-      console.log("Add Mode", this.addMode)
+      // console.log("Mode" , this.formMode)
+      // console.log("View Mode" , this.isViewMode)
+      // console.log("Add Mode", this.addMode)
     }
     else {
         this.formMode = 'Add';
         this.addMode = true;
-        console.log("Add Mode", this.addForm)
+        // console.log("Add Mode", this.addForm)
     }
   }
 
@@ -84,14 +83,14 @@ export class ChordsStorageDetailComponent implements OnInit {
   loadRecordData(){
     this.songSheetService.getSheetById(this.songSheetId).subscribe({
       next: (data: any) => {
-        console.log("Data: ", data);
+        // console.log("Data: ", data);
         this.addForm.patchValue(data);
 
-        this.genre?.setValue(this.genreOptions.find(x => { return x.value == data.genreId } ));
-        console.log("Genre Value: ", this.genre?.value);
+        let genre = this.genreOptions.find(x => { return x.value === data.genreId } );
+        this.genre?.setValue(genre?.value);
 
-        console.log("AddForm:", this.addForm)
-        console.log("AddForm Raw Value:", this.addForm.getRawValue())
+        let key = this.keysOptions.find(x => { return x.value === data.keySignatureId } );
+        this.keySignature?.setValue(key?.value);
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -102,12 +101,12 @@ export class ChordsStorageDetailComponent implements OnInit {
   getKeys(){
     this.codeListValueService.getKeys().subscribe({
       next: (data: any) => {
-        console.log("Keys: ",data);
+        // console.log("Keys: ",data);
         this.keysOptions = data.map((key: any) => {
           return { label: key.name, value: key.id }
         })
         
-        console.log("Key Options: ",this.keysOptions);
+        // console.log("Key Options: ",this.keysOptions);
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -118,11 +117,11 @@ export class ChordsStorageDetailComponent implements OnInit {
   getGenres(){
     this.codeListValueService.getGenres().subscribe({
       next: (data: any) => {
-        console.log("Genres: ",data);
+        // console.log("Genres: ",data);
         this.genreOptions = data.map((genre: any) => {
           return { label: genre.name, value: genre.id };
         })
-        console.log("Genre Options: ",this.genreOptions);
+        // console.log("Genre Options: ",this.genreOptions);
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -141,10 +140,6 @@ export class ChordsStorageDetailComponent implements OnInit {
     })
   }
 };
-
-  initializeAll(){
-
-  }
 
   getIdFromRoute(){
     this.route.paramMap.subscribe({
@@ -168,14 +163,14 @@ export class ChordsStorageDetailComponent implements OnInit {
     console.log(record);
     if(this.addForm.valid === true){
 
-      console.log("Valid!: ", this.addForm.valid)
+      // console.log("Valid!: ", this.addForm.valid)
       if(this.songSheetId > 0){
         // console.log(record);
         this.songSheetService.updateSheet({
           songTitle: record.songTitle,
           singer: record.singer,
-          keySignatureId: record.keySignature,
-          genreId: record.genre,
+          keySignatureId: record.keySignature.toString(),
+          genreId: record.genre.toString(),
           contents: record.contents,
           id: this.songSheetId,
         }).subscribe({
