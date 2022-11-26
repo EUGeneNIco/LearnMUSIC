@@ -5,14 +5,14 @@
 
 .container {
     /* border: solid black 2px; */
-    border: solid rgb(103, 144, 198) 1px;
+    /* border: solid rgb(103, 144, 198) 1px; */
     margin-top: 60px;
     height: 100%;
     width: 100%;
     min-height: 50vh;
     min-width: 375px;
     padding: 1rem;
-    background-color: #0066FF;
+    /* background-color: #0066FF; */
     font-family: 'Varela Round', sans-serif;
     color: white;
     background-position: center;
