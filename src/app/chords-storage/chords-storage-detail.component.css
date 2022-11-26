@@ -4,7 +4,8 @@
     height: 100%;
     width: 100%;
     padding: 1rem;
-    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
+    border: solid rgb(103, 144, 198) 1px;
+    background-color: #0066FF;
     font-family: 'Varela Round', sans-serif;
     color: white;
     font-size: 1.2rem;
@@ -66,7 +67,6 @@
 .body .content .input-text-area textarea{
     width: 100%;
     height: 42vh;
-    /* margin-top: 0.5rem; */
 }
 
 .cont .footer {
@@ -147,7 +147,7 @@
     .container {
         /* border: solid rgb(162, 22, 127) 3px; */
         height: 745px;
-        width: 100%;
+        width: 95%;
         padding: 0.3rem 0rem;
     }
 

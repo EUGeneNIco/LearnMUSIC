@@ -1,25 +1,33 @@
 *{
     font-size: 1rem !important;
     font-family: 'Varela Round', sans-serif !important;
+    color: white;
 }
 
 .container {
     /* border: solid rgb(0, 0, 0) 3px; */
+    background-color: #0066FF;
     margin-top: 60px;
 }
 .row {
     padding: 2rem;
 }
-/* btn-theme {
-    color: whitesmoke;
-    background-color: #3500D3;
+
+#fb {
+    background-color: #2239d0;
+    transition: 0.5s;
 }
 
-.sub-lead {
-    text-align: right;
-    font-style: italic;
+#fb:hover {
+    background-color: #000e67;
+    cursor: pointer;
 }
 
-.higher {
-    margin-bottom: 50px;
-} */
+@media (max-width:800px) {
+    .container {
+        width: 95%;
+    }
+    .row {
+        padding: 1rem;
+    }
+}

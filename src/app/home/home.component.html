@@ -11,7 +11,7 @@
             Yes, you can enjoy music while learning it. You can search new songs and their tabs/chords and save it directly on the gallery.
           </p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-            <button *ngIf="loggedIn" (click)="goToFeedBackPage()" type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Contact Us</button>
+            <button id="fb" *ngIf="loggedIn" (click)="goToFeedBackPage()" type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Contact Us</button>
             <button *ngIf="!loggedIn" (click)="goToLoginPage()" type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Signin</button>
             <button *ngIf="!loggedIn" (click)="goToRegisterPage()" type="button" class="btn btn-outline-secondary btn-lg px-4">Signup</button>
           </div>

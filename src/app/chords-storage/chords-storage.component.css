@@ -1,17 +1,12 @@
-body, html {
-    height: 100%;
-  }
-
 
 .container {
-    /* border: solid rgb(0, 0, 0) 3px; */
+    border: solid rgb(103, 144, 198) 1px;
     margin-top: 60px;
     height: 100%;
     width: 100%;
     min-height: 50vh;
-    /* min-width: 345px; */
     padding: 1rem;
-    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
+    background-color: #0066FF;
     font-family: 'Varela Round', sans-serif;
     color: white;
     background-position: center;
@@ -42,11 +37,10 @@ body, html {
     /* border: solid black 1px; */
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap; */
     flex: 1 1 20%;
-    gap: 1rem;
+    gap: 1.5rem;
 
-    padding: 3rem;
+    padding: 4rem;
     margin: 0.5rem 0;
 
     height: 50%;
@@ -58,7 +52,6 @@ body, html {
     /* border: solid black 1px; */
     width: 25vh;
     min-height: 20vh;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -66,10 +59,7 @@ body, html {
     color: black;
     border-radius: 10px;
     transition: 0.5s;
-
     font-size: 1rem;
-
-    /* border-radius: 15px; */
 }
 
 .body .sheet .action{
@@ -98,11 +88,8 @@ body, html {
 .body .sheet:hover {
     background-color: #0066FF;
     color: white;
-    /* border: solid gainsboro 1px; */
     font-weight: 900;
     cursor: pointer;
-    /* width: 26vh;
-    height: 23vh; */
 }
 
 .body .sheet div .title {
@@ -216,7 +203,7 @@ body, html {
 @media (max-width:750px) {
     .container {
         /* border: solid rgb(162, 22, 127) 1px; */
-        width: 100%;
+        width: 95%;
         padding: 0;
 
     }

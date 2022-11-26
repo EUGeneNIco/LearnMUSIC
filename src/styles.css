@@ -7,3 +7,24 @@
     left: 0;
     width: 100%;
   }
+
+  html{
+    /* border: solid rgb(0, 0, 0) 3px; */
+    margin: 0px;
+    /* height: 100%; */
+    /* width: 100%; */
+    min-height:100%;
+    width:100%;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+  }
+  
+  body {
+    /* border: solid rgb(64, 0, 255) 3px; */
+    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+  }

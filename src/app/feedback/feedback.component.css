@@ -1,17 +1,18 @@
-body, html {
-    height: 100%;
-  }
 
+* {
+    color: white;
+}
 
 .container {
-    /* border: solid black 3px; */
+    /* border: solid black 2px; */
+    border: solid rgb(103, 144, 198) 1px;
     margin-top: 60px;
     height: 100%;
     width: 100%;
     min-height: 50vh;
     min-width: 375px;
     padding: 1rem;
-    background-image: linear-gradient(to bottom, #0066FF, #7791b7);
+    background-color: #0066FF;
     font-family: 'Varela Round', sans-serif;
     color: white;
     background-position: center;
@@ -35,6 +36,10 @@ body, html {
     text-align: center;
     font-size: 2rem;
     font-weight: 500;
+}
+
+.cont .header p{
+    margin: 0;
 }
 
 .cont .body{
@@ -115,4 +120,19 @@ body, html {
 .cont .footer .button button:hover{
     background-color: #31864b;
     cursor: pointer;
+}
+
+@media (max-width: 800px){
+    .container {
+        width: 80%;
+        min-width:355px;
+        padding: 0;
+    }
+    .cont .body .text-input input{
+        width: 100%;
+    }
+
+    .header p {
+        font-size: 1.5rem;
+    }
 }

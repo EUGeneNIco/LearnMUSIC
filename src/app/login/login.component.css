@@ -7,20 +7,18 @@
     font-family: 'Varela Round', sans-serif;
 }
 
-body{
-    /* position: relative !important; */
-    /* margin-top: 80px; */
-    margin-top: 60px;
+
+.body{
+    border: solid rgb(103, 144, 198) 1px;
+    height: 600px;
+    width: 450px;
+    margin: 60px auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-image: linear-gradient(to bottom, #0066FF, #29569a);
     background-size: cover;
-    height: 800px;
-    width: 100%;
-
-    /* animation: move 15s linear alternate infinite; */
 }
 
 
@@ -35,13 +33,12 @@ body{
     /* border: solid black 3px; */
     height: 10%;
     width: 100%;
-    padding: 1rem;
+    padding: 0.1em;
     text-align: center;
     margin-bottom: 1rem;
     font-size: 3rem;
     border-radius: 15px;
     color: white;
-    /* background-color: rgb(4, 41, 153); */
 }
 
 .login-box{
@@ -140,12 +137,10 @@ form input[type="submit"]:hover {
 }
 
 @media (max-width: 800px) {
-    body{
-        height: 580px;
-        width: 100%;
+    .body{
+        width: 350px;
     }
     .header{
-        /* border: solid red 3px; */
         font-size: 2rem;
         height: 10%;
         padding: 0.5rem;
@@ -155,7 +150,6 @@ form input[type="submit"]:hover {
     }
     .login-box h2{
         font-size: xx-large;
-        /* color: red; */
     }
 }
 
