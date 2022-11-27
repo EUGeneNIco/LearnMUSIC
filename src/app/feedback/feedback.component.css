@@ -1,8 +1,4 @@
 
-* {
-    color: white;
-}
-
 .container {
     /* border: solid black 2px; */
     /* border: solid rgb(103, 144, 198) 1px; */
@@ -19,6 +15,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 
 .cont {
     /* border: solid black 1px; */

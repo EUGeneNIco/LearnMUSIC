@@ -1,4 +1,6 @@
 
+
+<!-- Self made navbar
 <div class="container my-5">
   <nav class="navbar navbar-expand-md fixed-top navbar-theme navbar-dark" style="padding: 0;">
     <div class="cont">
@@ -20,18 +22,24 @@
       </div>
     </div>
   </nav>
-</div>
+</div> -->
 
-<!-- <div class="container my-5">
+<div class="container">
   <nav class="navbar navbar-expand-md fixed-top navbar-theme navbar-dark">
-    <div class="container" style="border: solid rgb(252, 0, 0) 1px;">
+    <div class="container">
         <a class="navbar-brand" routerLink='/home' routerLinkActive="active">LearnMUSIC</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#toggleDropdown" 
+        aria-controls="toggleDropdown" 
+        aria-expanded="false" >
         <span class="navbar-toggler-icon"></span>
       </button>
-        <div class="container-fluid" style="border: solid black 1px;">
-            <div class="collapse navbar-collapse" style="border: solid rgb(25, 187, 25) 1px;"  id="navbarCollapse">
-              <ul class="navbar-nav me-auto mb-2 mb-md-0" style="border: solid rgb(248, 0, 165) 1px;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="toggleDropdown">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0" >
                 <li class="nav-item">
                   <a class="nav-link active"  routerLink='' routerLinkActive="active">Home</a>
                 </li>
@@ -41,34 +49,16 @@
                 <li class="nav-item">
                     <a class="nav-link active" *ngIf="loggedOut" (click)="signOut()" routerLink='' routerLinkActive="active">Log Out</a>
                 </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" routerLinkActive="active" href="#">Home</a></li>
+                    <li><a class="dropdown-item" *ngIf="loggedOut" routerLink='/chords' href="#">Your Chart</a></li>
+                    <li><a class="dropdown-item" *ngIf="loggedOut" (click)="signOut()" href="#">Log Out</a></li>
+                  </ul>
               </ul>
             </div>
           </div>
     </div>
   </nav>
-</div> -->
-
-<!-- <div class="container my-5">
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">LearnMUSIC</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink='' routerLinkActive="active">Home</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink='/chords' routerLinkActive="active">Your Chart</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link active" aria-current="page" (click)="signOut()" routerLink='' routerLinkActive="active">Log Out</a>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div> -->
+</div>

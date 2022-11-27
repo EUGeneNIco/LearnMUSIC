@@ -70,7 +70,7 @@ namespace LearnMUSIC
 
       app.UseCors(policy => policy.AllowAnyHeader()
                                   .AllowAnyMethod()
-                                  .WithOrigins("http://localhost:4200", "http://192.168.100.2:4200"));
+                                  .WithOrigins("http://localhost:4200", "http://192.168.100.2:4200", "http://0.0.0.0:4200"));
 
       app.UseAuthentication();
 

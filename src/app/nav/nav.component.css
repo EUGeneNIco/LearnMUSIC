@@ -5,7 +5,8 @@
 }
 
 .navbar-theme {
-    background-image: linear-gradient(to bottom, #0066FF, #29569a);
+    /* background-image: linear-gradient(to bottom, #0066FF, #29569a); */
+    background-color: #2239d0;
 }
 
 .nav-item:hover{
@@ -83,6 +84,8 @@ p:hover {
     }
     
 }
+
+
 
 
 
