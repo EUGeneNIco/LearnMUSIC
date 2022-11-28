@@ -15,6 +15,8 @@ import { Globals } from './globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { AdminComponent } from './admin/admin.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
     LoginComponent,
     RegisterComponent,
     FeedbackComponent,
+    AdminComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

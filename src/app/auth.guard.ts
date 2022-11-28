@@ -25,7 +25,8 @@ export class AuthGuard implements CanActivate {
         const hasAccess = this.authService.userHasAccessToModule(module);
 
         if(!hasAccess){
-          this.toastr.error("You have no access!")
+          this.toastr.error("You have no access!");
+          this.router.navigateByUrl('login');
         }
         return hasAccess;
       }

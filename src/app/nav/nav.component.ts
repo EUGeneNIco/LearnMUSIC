@@ -11,6 +11,7 @@ import { AuthService } from '../service/auth.service';
 export class NavComponent implements OnInit {
 
   loggedOut: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     private toastr: ToastrService,
@@ -20,6 +21,9 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkIfSignedIn();
+    if(this.loggedOut){
+      this.checkIfAdmin();
+    }
   }
 
   signOut() {
@@ -32,6 +36,10 @@ export class NavComponent implements OnInit {
 
   checkIfSignedIn(){
     this.authService.authToken != null ? this.loggedOut = true : this.loggedOut = false;
+  }
+
+  checkIfAdmin(){
+    this.authService.userHasAccessToModule("Admin")  ? this.isAdmin = true : this.isAdmin = false;
   }
 
 }
