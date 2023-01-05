@@ -14,4 +14,8 @@ export class FeedbackService extends BaseService  {
   sendFeedback(record:any){
     return this.http.post(this.API_URL + '/api/Feedback/addFeedback', record);
   }
+
+  getAllFeedback(){
+    return this.http.get(this.API_URL  + '/api/Feedback/getAllFeedBack');
+  }
 }

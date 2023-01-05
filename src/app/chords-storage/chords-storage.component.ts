@@ -37,9 +37,7 @@ export class ChordsStorageComponent implements OnInit {
     private fb: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,)
-    {
-      
-     }
+    { }
   
   ngOnInit(): void {
     this.reloadData();
@@ -143,7 +141,6 @@ export class ChordsStorageComponent implements OnInit {
 
       if(this.lastSheetNo === 6){
         this.hasPrevPage = false;
-        console.log("No prev!!")
       }
     }
     else if(this.sheetsLeft === 0){
@@ -158,7 +155,6 @@ export class ChordsStorageComponent implements OnInit {
       this.showStatus();
       if(this.lastSheetNo === 6){
         this.hasPrevPage = false;
-        console.log("No prev!!")
       }
     }
   }

@@ -54,10 +54,10 @@ export class ChordsStorageDetailComponent implements OnInit {
     this.getKeys();
     this.getGenres();
 
-    this.checkWhatMode()
+    this.checkMode()
   }
 
-  checkWhatMode(){
+  checkMode(){
     if (this.songSheetId > 0) {
       this.loadRecordData();
 
@@ -65,14 +65,10 @@ export class ChordsStorageDetailComponent implements OnInit {
       this.isViewMode ? this.addForm.disable() : this.addForm.enable();
 
       this.formMode = this.isViewMode ? 'View' : 'Edit';
-      // console.log("Mode" , this.formMode)
-      // console.log("View Mode" , this.isViewMode)
-      // console.log("Add Mode", this.addMode)
     }
     else {
         this.formMode = 'Add';
         this.addMode = true;
-        // console.log("Add Mode", this.addForm)
     }
   }
 
@@ -106,7 +102,6 @@ export class ChordsStorageDetailComponent implements OnInit {
           return { label: key.name, value: key.id }
         })
         
-        // console.log("Key Options: ",this.keysOptions);
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -121,7 +116,6 @@ export class ChordsStorageDetailComponent implements OnInit {
         this.genreOptions = data.map((genre: any) => {
           return { label: genre.name, value: genre.id };
         })
-        // console.log("Genre Options: ",this.genreOptions);
       },
       error: (e) => {
         this.toastr.error(e.error);
@@ -182,7 +176,6 @@ export class ChordsStorageDetailComponent implements OnInit {
           },
           error:(e) => {
             this.toastr.error(e.error);
-            // console.log(e);
           }
         })
       }
