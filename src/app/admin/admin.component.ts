@@ -10,6 +10,7 @@ import { FeedbackService } from '../service/feedback.service';
 export class AdminComponent implements OnInit {
 
   feedbacks: any[] = [];
+  seeFeedbacks: boolean = false;
 
   constructor(
     private feedbackService: FeedbackService,

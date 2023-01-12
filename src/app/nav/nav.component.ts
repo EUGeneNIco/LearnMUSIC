@@ -29,8 +29,9 @@ export class NavComponent implements OnInit {
   signOut() {
     this.authService.destroyAuthToken();
 
-    this.router.navigateByUrl('login');
     this.loggedOut = true;
+
+    this.router.url === '/' ? this.ngOnInit() : this.router.navigateByUrl('')
     this.toastr.success("Logged out.");
   }
 

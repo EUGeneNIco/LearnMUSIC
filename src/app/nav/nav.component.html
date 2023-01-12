@@ -49,8 +49,8 @@
                 <!-- <li class="nav-item">
                     <a class="nav-link active" *ngIf="loggedOut" (click)="signOut()" routerLink='' routerLinkActive="active">Log Out</a>
                 </li> -->
-                <li class="nav-item dropdown ">
-                  <a class="nav-link dropdown-toggle active" *ngIf="loggedOut" href="#" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                <li class="nav-item dropdown " *ngIf="loggedOut">
+                  <a class="nav-link dropdown-toggle active"  href="#" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                   <ul class="dropdown-menu"  style="background-color: blue;">
                     <li><a class="dropdown-item" *ngIf="loggedOut" routerLinkActive="active" href="profile">Edit Profile</a></li>
                     <li><a class="dropdown-item" *ngIf="loggedOut" (click)="signOut()" href="#">Log Out</a></li>
